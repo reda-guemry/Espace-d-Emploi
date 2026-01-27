@@ -17,10 +17,18 @@ return new class extends Migration
             $table -> string('last_name') ;
             $table -> string('email') -> unique() ; 
             $table -> string('password') ; 
-            $table -> timestamp() ; 
 
+            $table -> enum('role' , ['candidate' , 'recruiter']) -> default('candidate'); 
 
-            
+            $table -> text('bio') -> nullable() ; 
+
+            $table -> string ('profile_photo') -> nullable();
+
+            $table -> rememberToken() ;
+
+            $table -> timestamps() ; 
+
+            $table->string('specialty')->nullable();
 
         });
 
