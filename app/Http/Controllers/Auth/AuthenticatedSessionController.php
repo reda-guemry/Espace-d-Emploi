@@ -28,6 +28,10 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        if ($request -> user() -> role == 'recruiter' ) {
+            return redirect() -> intended (route('recruiter.dashboard')) ; 
+        }
+
         return redirect()->intended(route('dashboard', absolute: false));
     }
 
