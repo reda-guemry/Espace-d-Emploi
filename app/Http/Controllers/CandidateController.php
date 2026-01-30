@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class CandidateController extends Controller
 {
 
-    public function __construct(protected $recruiterService) {
+    public function __construct() {
 
     }
 

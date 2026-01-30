@@ -22,7 +22,7 @@ return new class extends Migration
 
             $table -> text('bio') -> nullable() ; 
 
-            $table -> string ('profile_photo') -> nullable();
+            $table -> string ('profile_photo') -> default('default_profile.jpg') ;
 
             $table -> rememberToken() ;
 

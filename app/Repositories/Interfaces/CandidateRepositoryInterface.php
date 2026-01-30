@@ -6,5 +6,5 @@ use Illuminate\Support\Collection;
 
 interface CandidateRepositoryInterface
 {
-    public function getAllCandidates(): Collection ;
+    public function getAllCandidates(array $filter = []): Collection ;
 }

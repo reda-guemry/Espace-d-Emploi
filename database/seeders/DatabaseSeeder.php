@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
             'role' => 'recruiter',
             'password' => bcrypt('password'),
+            'profile_photo' => 'default_profile.jpg' , 
         ]);
     }
 }

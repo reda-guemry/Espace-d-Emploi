@@ -12,7 +12,10 @@ class UserDTO
         public readonly string $first_name ,
         public readonly string $last_name ,
         public readonly string $role ,
-        public readonly string $email
+        public readonly string $email ,
+        public readonly ?string $profile_photo , 
+        public readonly ?string $specialty ,
+        public readonly ?string $bio ,   
         )
     {}
 
@@ -23,7 +26,10 @@ class UserDTO
             first_name : $user -> first_name , 
             last_name : $user -> last_name , 
             role : $user -> role , 
-            email : $user -> email 
+            email : $user -> email , 
+            profile_photo : $user -> profile_photo,
+            specialty : $user -> specialty , 
+            bio : $user -> bio , 
         ) ;
     }
 

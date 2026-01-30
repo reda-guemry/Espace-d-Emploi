@@ -18,8 +18,36 @@ class CandidateRepository implements CandidateRepositoryInterface
         //
     }
 
-    public function getAllCandidates(): Collection {
-        return User:where('role' , 'candidate') -> latest -> get() ; 
+    public function getAllCandidates(array $filter = []): Collection {
+
+        $query = User::where('role' , 'candidate')  ; 
+
+        $allowedFilter = ['specialty']  ; 
+
+        foreach ($filter as $key => $value ) { 
+
+            if (empty($value)) { 
+                continue ; 
+            }
+
+            if($key === 'search') {
+                $query -> where (function($q) use ($value) {
+                        $q -> where ('first_name' , 'like' , '%' . $value . '%') 
+                        -> orwhere ('last_name' , 'like' , '%' . $value . '%')
+                        -> orWhereRaw("CONCAT(first_name || ' ' || last_name) ILIKE ? " , ['%' . $value . '%']) ; 
+                });
+                continue ; 
+            }
+
+            if (in_array($key , $allowedFilter)) {
+                $query -> where($key , $value) ;
+            }
+
+
+        }
+
+        return $query -> latest() -> get() ;  
+
     }
 
 }
