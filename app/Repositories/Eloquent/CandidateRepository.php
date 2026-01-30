@@ -50,4 +50,9 @@ class CandidateRepository implements CandidateRepositoryInterface
 
     }
 
+    public function getCandidateProfile(int $id): ?User {
+
+        return User::where('role' , 'candidate') -> find($id) ;
+    }
+
 }

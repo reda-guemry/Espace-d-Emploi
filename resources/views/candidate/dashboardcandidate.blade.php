@@ -13,12 +13,12 @@
                         
                         <div class="px-6 pb-6 text-center -mt-12">
                             <div class="relative inline-block mb-4">
-                                <img class="w-24 h-24 rounded-full border-4 border-white shadow-xl object-cover ring-4 ring-blue-100/50" src="https://i.pravatar.cc/300?u=bill" alt="Bill Gates">
+                                <img class="w-24 h-24 rounded-full border-4 border-white shadow-xl object-cover ring-4 ring-blue-100/50" src="{{ asset('storage/profiles/' . $candidate -> profile_photo )  }}" alt="Bill Gates">
                                 <div class="absolute bottom-2 right-2 bg-gradient-to-br from-emerald-400 to-emerald-500 w-5 h-5 rounded-full border-3 border-white shadow-lg"></div>
                             </div>
                             
-                            <h2 class="text-2xl font-bold text-slate-900 mb-1">Bill Gates</h2>
-                            <p class="text-sm font-medium text-slate-600 mb-1">Microsoft Founder</p>
+                            <h2 class="text-2xl font-bold text-slate-900 mb-1">{{ $candidate -> first_name }} {{ $candidate -> last_name }}</h2>
+                            <p class="text-sm font-medium text-slate-600 mb-1">{{ $candidate -> role }}</p>
                             <p class="text-xs text-slate-400 flex items-center justify-center gap-1">
                                 <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/></svg>
                                 Greater Seattle Area
@@ -59,6 +59,7 @@
                                 </a>
                             </div>
                         </div>
+
                     </div>
                 </div>
 
@@ -262,31 +263,7 @@
                                 </button>
                             </div>
 
-                            <div class="flex items-center justify-between group cursor-pointer hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-transparent rounded-xl p-2 -mx-2 transition-all duration-200">
-                                <div class="flex items-center gap-3">
-                                    <img src="https://i.pravatar.cc/150?u=oykun" class="w-12 h-12 rounded-full ring-2 ring-slate-100 group-hover:ring-blue-200 transition-all">
-                                    <div>
-                                        <h4 class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors">Oykun Yilmaz</h4>
-                                        <p class="text-xs text-slate-500">Designer at Google</p>
-                                    </div>
-                                </div>
-                                <button class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 flex items-center justify-center transition-all">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
-                                </button>
-                            </div>
-
-                            <div class="flex items-center justify-between group cursor-pointer hover:bg-gradient-to-r hover:from-blue-50/50 hover:to-transparent rounded-xl p-2 -mx-2 transition-all duration-200">
-                                <div class="flex items-center gap-3">
-                                    <img src="https://i.pravatar.cc/150?u=billken" class="w-12 h-12 rounded-full ring-2 ring-slate-100 group-hover:ring-blue-200 transition-all">
-                                    <div>
-                                        <h4 class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors">Bill S Kenney</h4>
-                                        <p class="text-xs text-slate-500">Product Designer</p>
-                                    </div>
-                                </div>
-                                <button class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 hover:bg-blue-100 flex items-center justify-center transition-all">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 6v6m0 0v6m0-6h6m-6 0H6"/></svg>
-                                </button>
-                            </div>
+                            
                         </div>
                         
                         <a href="#" class="block mt-5 pt-4 border-t border-slate-100 text-sm text-blue-600 font-semibold hover:text-blue-700 transition-colors">See All (300) →</a>
