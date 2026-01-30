@@ -14,17 +14,21 @@ class CandidateController extends Controller
         private CandidateService $candidateService
     ) {}
 
-    public function index() {
+    public function index(Request $request) {
 
         $id = Auth::id() ; 
 
+        $filter = $request-> all() ; 
+
         $candidate = $this -> candidateService -> getCandidateProfile($id) ;
 
+        $users = $this -> candidateService -> getallpeople($filter) ; 
+
         
-        // var_dump($candidate) ; 
+        // var_dump($people) ; 
         // exit ; 
 
-        return view ('candidate.dashboardcandidate' , compact('candidate')) ; 
+        return view ('candidate.dashboardcandidate' , compact('candidate' , 'users')) ; 
     }
 
 

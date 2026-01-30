@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Repositories\Interfaces\CandidateRepositoryInterface ; 
+use App\Repositories\Interfaces\UserRepositoryInterface ; 
 use App\DTOs\UserDTO ; 
 
 
@@ -12,7 +12,7 @@ class RecruiterService
      * Create a new class instance.
      */
     public function __construct(
-        protected CandidateRepositoryInterface $repository
+        protected UserRepositoryInterface $repository
     ){}
 
 
@@ -25,3 +25,4 @@ class RecruiterService
     }
 
 }
+ 

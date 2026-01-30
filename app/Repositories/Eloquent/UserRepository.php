@@ -2,17 +2,21 @@
 
 namespace App\Repositories\Eloquent;
 
-use App\Repositories\Interfaces\CandidateRepositoryInterface ; 
+use App\Repositories\Interfaces\UserRepositoryInterface ; 
 use Illuminate\Support\Collection;
 use App\Models\User ;
+use Illuminate\Database\Eloquent\Builder;
 
 
-
-class CandidateRepository implements CandidateRepositoryInterface
+class UserRepository implements UserRepositoryInterface
 {
     /**
      * Create a new class instance.
      */
+
+    protected array $allowedFilter = ['specialty'] ;
+
+
     public function __construct()
     {
         //
@@ -22,7 +26,30 @@ class CandidateRepository implements CandidateRepositoryInterface
 
         $query = User::where('role' , 'candidate')  ; 
 
-        $allowedFilter = ['specialty']  ; 
+        $this -> applyFilters($query , $filter) ; 
+
+        return $query -> latest() -> get() ;  
+
+    }
+
+    public function getAllUser(array $filter = [] ) :Collection {
+
+        $query = User::query() ;
+
+        $this -> applyFilters($query , $filter) ; 
+
+        return $query -> latest() -> get() ; 
+    }
+
+
+    public function getUserById(int $id): ?User {
+
+
+        return User::find($id) ;
+
+    }
+
+    public function  applyFilters(Builder $query , array $filter = []) {
 
         foreach ($filter as $key => $value ) { 
 
@@ -39,20 +66,13 @@ class CandidateRepository implements CandidateRepositoryInterface
                 continue ; 
             }
 
-            if (in_array($key , $allowedFilter)) {
+            if (in_array($key , $this -> allowedFilter )) {
                 $query -> where($key , $value) ;
             }
 
 
         }
 
-        return $query -> latest() -> get() ;  
-
-    }
-
-    public function getCandidateProfile(int $id): ?User {
-
-        return User::where('role' , 'candidate') -> find($id) ;
     }
 
 }
