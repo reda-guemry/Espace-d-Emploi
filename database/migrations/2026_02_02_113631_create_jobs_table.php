@@ -13,6 +13,18 @@ return new class extends Migration
     {
         Schema::create('jobs', function (Blueprint $table) {
             $table->id();
+
+            $table -> foreignId('user_id') -> constrained() -> onDelete('cascade') ;
+
+            $table -> string('title') ; 
+            $table -> text('description') ; 
+
+            $table -> string('image') -> nullable() ; 
+            $table -> string('contract_type') ;
+            $table -> string('location') ;
+            $table -> enum('status' , ['open' , 'closed']) ; 
+            $table -> date('finish_at') ; 
+
             $table->timestamps();
         });
     }
@@ -25,6 +37,6 @@ return new class extends Migration
         Schema::dropIfExists('jobs');
     }
 
-    
+
 
 };
