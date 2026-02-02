@@ -18,8 +18,6 @@ return new class extends Migration
             $table -> string('email') -> unique() ; 
             $table -> string('password') ; 
 
-            $table -> enum('role' , ['candidate' , 'recruiter']) -> default('candidate'); 
-
             $table -> text('bio') -> nullable() ; 
 
             $table -> string ('profile_photo') -> default('default_profile.jpg') ;
