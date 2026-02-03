@@ -23,7 +23,7 @@ class Application extends Model
 
     public function job(): BelongsTo 
     {
-        return $this -> belongsTo(Job::class) ;
+        return $this -> belongsTo(Vacancie::class) ;
     }
 
 }

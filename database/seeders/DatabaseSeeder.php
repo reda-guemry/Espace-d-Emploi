@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Database\Seeders\RolesAndPermissionsSeeder;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,15 +17,20 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        $this->call(RolesAndPermissionsSeeder::class);
+
+
         User::factory(5)->create();
 
-        User::factory()->create([
+        $admin = User::create([
             'first_name' => 'Admin',
             'last_name' => 'User',
             'email' => 'admin@example.com',
-            'role' => 'recruiter',
             'password' => bcrypt('password'),
-            'profile_photo' => 'default_profile.jpg' , 
+            'profile_photo' => 'default_profile.jpg',
         ]);
+
+        $admin->assignRole('recruiter');
+
     }
 }

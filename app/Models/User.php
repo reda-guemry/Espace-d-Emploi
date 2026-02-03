@@ -4,8 +4,12 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Spatie\Permission\Models\Role ; 
 
 class User extends Authenticatable
 {
@@ -20,7 +24,6 @@ class User extends Authenticatable
     protected $fillable = [
         'first_name',
         'last_name',
-        'role',
         'email',
         'password',
         'specialty' , 
@@ -53,16 +56,42 @@ class User extends Authenticatable
     }
 
 
-    public function sentRequests()
+    public function sentRequests(): HasMany
     {
         return $this -> hasMany(Connection::class , 'sender_id') ; 
     }
 
-    public function receivedRequests()
+    public function receivedRequests(): HasMany
     {
         return $this -> hasMany(Connection::class , 'receiver_id' ) ; 
 
     }
+
+    public function application(): belongsToMany 
+    {
+        return $this -> belongsToMany(Application::class) ;
+    }
+    
+    public function roles(): BelongsTo  
+    {
+        return $this -> belongsTo(Role::class) ; 
+    }
+
+    public function educations(): belongsToMany 
+    {
+        return $this -> belongsToMany(Education::class) ; 
+    }
+
+    public function experiences(): BelongsToMany
+    {
+        return $this -> belongsToMany (Experience::class) ; 
+    }
+
+    public function skills(): BelongsToMany
+    {
+        return $this -> belongsToMany(Skill::class) ; 
+    }
+
     
 
 
