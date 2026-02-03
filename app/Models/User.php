@@ -53,6 +53,16 @@ class User extends Authenticatable
     }
 
 
+    public function sentRequests()
+    {
+        return $this -> hasMany(Connection::class , 'sender_id') ; 
+    }
+
+    public function receivedRequests()
+    {
+        return $this -> hasMany(Connection::class , 'receiver_id' ) ; 
+
+    }
     
 
 

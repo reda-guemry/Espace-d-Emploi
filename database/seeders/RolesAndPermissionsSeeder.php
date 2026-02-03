@@ -16,15 +16,12 @@ class RolesAndPermissionsSeeder extends Seeder
     {
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
+        Role::create(['name' => 'candidate']) ; 
+        Role::create(['name' => 'recruiter']) ; 
 
-        Permission::create(['name' , 'edit profile']) ;
-        Permission::create(['name' , 'active user']) ;
+
+        // Permission::create(['name' , 'edit profile']) ;
         
-        $role = Role::cerate(['name' , 'employeur']) ; 
-        $role -> givePermissionTo('edit profile') ;
-
-        $role = Role::cerate(['name' , 'admin']) ; 
-        $role -> givePermissionTo(Permission::all());
 
         
 

@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('connections', function (Blueprint $table) {
             $table->id();
 
-            $table -> foreignId('sender_id') -> constrained() -> onDelete('cascade') ; 
-            $table -> foreignId('receiver_id') -> constrained() -> onDelete('cascade') ; 
+            $table -> foreignId('sender_id') -> constrained('users') -> onDelete('cascade') ; 
+            $table -> foreignId('receiver_id') -> constrained('users') -> onDelete('cascade') ; 
 
             $table -> enum('status' , ['pending' , 'accepted' , 'rejected']) ; 
 

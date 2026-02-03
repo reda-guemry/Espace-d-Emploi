@@ -10,9 +10,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/recruiter/dashboard', function () {
-//     return view('recruiter.dashboardrecruiter');
-// })->middleware(['auth', 'verified' , 'role:recruiter'])->name('recruiter.dashboard');
 
 Route::middleware(['auth' , 'verified' , 'role:recruiter']) -> group (function () {
 
@@ -26,11 +23,6 @@ Route::middleware(['auth' , 'verified' , 'role:candidate']) -> group (function()
 
 });
 
-
-
-// Route::get('candidate/dashboard', function () {
-//     return view('candidate.dashboardcandidate');
-// })->middleware(['auth', 'verified' , 'role:candidate'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
