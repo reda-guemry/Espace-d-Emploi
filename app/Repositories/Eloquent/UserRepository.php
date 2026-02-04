@@ -24,7 +24,7 @@ class UserRepository implements UserRepositoryInterface
 
     public function getAllCandidates(array $filter = []): Collection {
 
-        $query = User::where('role' , 'candidate')  ; 
+        $query = User::role('candidate') ; 
 
         $this -> applyFilters($query , $filter) ; 
 

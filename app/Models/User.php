@@ -10,9 +10,18 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Models\Role ; 
+use Spatie\Permission\Traits\HasRoles;
+
+
 
 class User extends Authenticatable
 {
+
+
+    use HasFactory, HasRoles;
+
+
+
     /** @use HasFactory<\Database\Factories\UserFactory> */
     use HasFactory, Notifiable;
 
@@ -31,6 +40,7 @@ class User extends Authenticatable
         'created_at' , 
         'bio' , 
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -71,11 +81,6 @@ class User extends Authenticatable
     {
         return $this -> belongsToMany(Application::class) ;
     }
-    
-    public function roles(): BelongsTo  
-    {
-        return $this -> belongsTo(Role::class) ; 
-    }
 
     public function educations(): belongsToMany 
     {
@@ -92,7 +97,7 @@ class User extends Authenticatable
         return $this -> belongsToMany(Skill::class) ; 
     }
 
-    
+
 
 
 }

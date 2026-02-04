@@ -20,7 +20,11 @@ class DatabaseSeeder extends Seeder
         $this->call(RolesAndPermissionsSeeder::class);
 
 
-        User::factory(5)->create();
+        User::factory(5)->create()->each(function ($user) {
+            
+            $randomRole = collect(['candidate', 'recruiter'])->random();
+            $user->assignRole($randomRole);
+        });
 
         $admin = User::create([
             'first_name' => 'Admin',

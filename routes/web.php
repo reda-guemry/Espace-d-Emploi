@@ -7,7 +7,7 @@ use App\Http\Controllers\CandidateController ;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return 'welcom';
 });
 
 
@@ -19,7 +19,7 @@ Route::middleware(['auth' , 'verified' , 'role:recruiter']) -> group (function (
 
 Route::middleware(['auth' , 'verified' , 'role:candidate']) -> group (function() {
 
-    Route::get('candidate/dashboard' , [CandidateController::class , 'index']) -> name ('dashboard') ; 
+    Route::get('candidate/dashboard' , [CandidateController::class , 'index']) -> name ('candidate.dashboard') ; 
 
 });
 

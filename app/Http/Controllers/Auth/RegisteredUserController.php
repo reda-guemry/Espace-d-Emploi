@@ -41,9 +41,14 @@ class RegisteredUserController extends Controller
             'first_name' => $request -> first_name , 
             'last_name' => $request -> last_name , 
             'email' => $request -> email , 
-            'role' => $request -> role , 
             'password' => Hash::make($request->password) 
-         ]);
+        ]);
+
+        // var_dump($request -> role  . 'skoko') ; 
+        // exit ; 
+
+        $user -> assignRole($request -> role) ; 
+
 
         event(new Registered($user));
 
