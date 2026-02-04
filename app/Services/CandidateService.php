@@ -23,11 +23,4 @@ class CandidateService
         
     }
 
-    public function getallpeople(array $filter = []) {
-        $user = $this -> repository ->  getAllUser($filter) ; 
-
-        return $user -> map( fn($usr) => UserDTO::fromModel($usr)  ) ; 
-
-    }
-
 }

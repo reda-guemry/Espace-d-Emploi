@@ -16,12 +16,8 @@ class RecruiterService
     ){}
 
 
-    public function getDashboardCandidates(array $filter = []) {
-
-        $candidat = $this -> repository -> getAllCandidates($filter) ;
-
-        return $candidat -> map(fn ($user) => UserDTO::fromModel($user)) ; 
-
+    public function getRecruteurProfile($id) {
+        return $this -> repository ->getUserById($id)  ;
     }
 
 }

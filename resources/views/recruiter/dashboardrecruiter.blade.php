@@ -18,34 +18,34 @@
                         
                         <!-- Profile Info -->
                         <div class="px-6 pb-6 text-center -mt-12">
-                            {{-- <div class="relative inline-block mb-4">
+                            <div class="relative inline-block mb-4">
                                 <img 
                                     class="w-24 h-24 rounded-full border-4 border-zinc-900 mx-auto object-cover shadow-xl" 
-                                    src="{{ asset('storage/profiles/' . $candidates->profile_photo) }}" 
+                                    src="{{ asset('storage/profiles/' . $recruteur->profile_photo) }}" 
                                     alt="Profile"
                                 >
                                 <div class="absolute bottom-2 right-2 bg-red-600 w-4 h-4 rounded-full border-4 border-zinc-900 animate-pulse"></div>
                             </div>
                             
-                            <h3 class="font-bold text-white text-lg mb-1">{{ $candidates->first_name }} {{ $candidates->last_name }}</h3>
-                            <p class="text-sm text-gray-400 mb-1">{{ $candidates->role }}</p>
-                            <p class="text-xs text-gray-600 mb-4">{{ $candidates->location ?? 'Morocco' }}</p>
+                            <h3 class="font-bold text-white text-lg mb-1">{{ $recruteur->first_name }} {{ $recruteur->last_name }}</h3>
+                            <p class="text-sm text-gray-400 mb-1">{{ $recruteur->role }}</p>
+                            <p class="text-xs text-gray-600 mb-4">{{ $recruteur->location ?? 'Morocco' }}</p>
                             
                             <!-- Stats -->
                             <div class="grid grid-cols-3 gap-4 mb-6">
                                 <div class="text-center">
-                                    <div class="text-xl font-bold text-white">{{ $candidates->connections_count ?? 0 }}</div>
+                                    <div class="text-xl font-bold text-white">{{ $recruteur->connections_count ?? 0 }}</div>
                                     <div class="text-xs text-gray-500">Connections</div>
                                 </div>
                                 <div class="text-center">
-                                    <div class="text-xl font-bold text-white">{{ $candidates->followers_count ?? 156 }}</div>
+                                    <div class="text-xl font-bold text-white">{{ $recruteur->followers_count ?? 156 }}</div>
                                     <div class="text-xs text-gray-500">Followers</div>
                                 </div>
                                 <div class="text-center">
-                                    <div class="text-xl font-bold text-white">{{ $candidates->following_count ?? 142 }}</div>
+                                    <div class="text-xl font-bold text-white">{{ $recruteur->following_count ?? 142 }}</div>
                                     <div class="text-xs text-gray-500">Following</div>
                                 </div>
-                            </div> --}}
+                            </div>
                             
                             <!-- Action Buttons -->
                             <div class="flex gap-2">
@@ -94,9 +94,7 @@
                 </aside>
 
                 <!-- Main Content -->
-                <main class="lg:col-span-6 space-y-6">
-                    <livewire:user-sherch />
-                    
+                <main class="lg:col-span-6 space-y-6">                    
                     <!-- About Section -->
                     <div class="bg-zinc-900 rounded-2xl border border-red-900/30 p-6 shadow-lg shadow-red-900/10">
                         <div class="flex items-center gap-2 mb-4">

@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Services\RecruiterService;
+use Illuminate\Support\Facades\Auth;
 
 
 class RecruiterController extends Controller
@@ -14,12 +14,15 @@ class RecruiterController extends Controller
         private RecruiterService $recruiterService
     ){} 
 
-    public function index(Request $request) {
+    public function index(Request $request) { 
 
-        $filter = $request -> all() ;
+        $id = Auth::id() ; 
 
-        $candidates = $this -> recruiterService -> getDashboardCandidates($filter) ; 
+        $recruteur = $this -> recruiterService -> getRecruteurProfile($id); 
 
-        return view('recruiter.dashboardrecruiter' , compact('candidates')) ; 
+        // var_dump($candidates) ;
+        // exit ; 
+
+        return view('recruiter.dashboardrecruiter' , compact('recruteur')) ; 
     }
 }

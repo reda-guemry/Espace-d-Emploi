@@ -22,13 +22,11 @@ class CandidateController extends Controller
 
         $candidate = $this -> candidateService -> getCandidateProfile($id) ;
 
-        $users = $this -> candidateService -> getallpeople($filter) ; 
-
         
         // var_dump($people) ; 
         // exit ; 
 
-        return view ('candidate.dashboardcandidate' , compact('candidate' , 'users')) ; 
+        return view ('candidate.dashboardcandidate' , compact('candidate')) ; 
     }
 
 
