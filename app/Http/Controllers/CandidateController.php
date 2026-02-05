@@ -23,6 +23,7 @@ class CandidateController extends Controller
         $candidate = $this -> candidateService -> getCandidateProfile($id) ;
 
         
+        
         // var_dump($people) ; 
         // exit ; 
 

@@ -4,7 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecruiterController ; 
 use App\Http\Controllers\CandidateController ;
-use App\Http\Controllers\vacanciesController ; 
+use App\Http\Controllers\vacancieController ; 
 
 
 Route::get('/', function () {
@@ -15,7 +15,7 @@ Route::get('/', function () {
 Route::middleware(['auth' , 'verified' , 'role:recruiter']) -> group (function () {
 
     Route::get('/recruiter/dashboard' , [RecruiterController::class , 'index'])-> name ('recruiter.dashboard') ; 
-    Route::post('/vacancies' , [vacanciesController::class , 'store']) -> name('vacancies.store') ;
+    Route::post('/vacancies' , [vacancieController::class , 'store']) -> name('vacancies.store') ;
 });
 
 Route::middleware(['auth' , 'verified' , 'role:candidate']) -> group (function() {

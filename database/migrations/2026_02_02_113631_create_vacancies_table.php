@@ -22,7 +22,7 @@ return new class extends Migration
             $table -> string('image') -> nullable() ; 
             $table -> string('contract_type') ;
             $table -> string('location') ;
-            $table -> enum('status' , ['open' , 'closed']) ; 
+            $table -> enum('status' , ['open' , 'closed']) -> default('open') ; 
             $table -> date('finish_at') ; 
 
             $table->timestamps();

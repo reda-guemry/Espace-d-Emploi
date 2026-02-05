@@ -12,6 +12,7 @@
                 </div>
 
                 <livewire:user-sherch />
+                
             </div>
 
             <div class="hidden md:flex items-center gap-8 text-sm font-medium">
