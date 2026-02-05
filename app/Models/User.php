@@ -35,9 +35,9 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
-        'specialty' , 
         'profile_photo' , 
         'created_at' , 
+        'cover_photo' ,
         'bio' , 
     ];
 

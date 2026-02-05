@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -26,13 +27,34 @@ class ProfileController extends Controller
      */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        $user = $request -> user() ; 
+        $data = $request -> validated() ; 
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        if($request -> hasFile('profile_photo')) {
+            if($user -> profile_photo && $user -> profile_photo != 'default_profile.jpg' ) {
+                Storage::disk('public') -> delete('profiles/' . $user -> profile_photo) ; 
+            }
+
+            $path = $request -> file('profile_photo') -> store('profiles' , 'public')  ;
+            $data['profile_photo'] = basename($path) ;
         }
 
-        $request->user()->save();
+        if($request -> hasFile('cover_photo')) {
+            if($user -> cover_photo && $user -> cover_photo != 'default_cover.png' ) {
+                Storage::disk('public') -> delete('covers/' . $user -> cover_photo) ;
+            }
+
+            $path = $request-> file('cover_photo') -> store('covers' , 'public') ;
+            $data['cover_photo'] = basename($path) ; 
+        }
+
+        // $request->user()->fill($request->validated());
+
+        if ($user->isDirty('email')) {
+            $user->email_verified_at = null;
+        }
+
+        $request->user()->update($data) ;
 
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }

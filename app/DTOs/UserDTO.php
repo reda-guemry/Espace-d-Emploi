@@ -13,9 +13,8 @@ class UserDTO
         public readonly string $last_name ,
         public readonly string $email,
         public readonly string $profile_photo , 
-        public readonly ?string $created_at , 
         public readonly ?string $bio  ,
-        public readonly ?string $specialty
+        public readonly ?string $cover_photo
         )
     {}
 
@@ -27,9 +26,8 @@ class UserDTO
             last_name : $user -> last_name , 
             email : $user -> email , 
             profile_photo : $user -> profile_photo , 
-            created_at : $user -> created_at , 
+            cover_photo : $user -> cover_photo , 
             bio : $user -> bio , 
-            specialty :$user -> specialty , 
             
         ) ;
     }

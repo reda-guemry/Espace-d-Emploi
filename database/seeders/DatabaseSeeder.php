@@ -32,6 +32,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
             'profile_photo' => 'default_profile.jpg',
+            'cover_photo' => 'default_cover.png' , 
         ]);
 
         $admin->assignRole('recruiter');

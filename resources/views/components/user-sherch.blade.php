@@ -24,6 +24,7 @@ new class extends Component {
                 ->get(),
         ];
     }
+    
 }; ?>
 
 <div class="relative w-full mb-6 z-50">
