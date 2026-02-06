@@ -54,6 +54,14 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        if ($user->hasRole('recruiter')) {
+            return redirect()->route('recruiter.dashboard');
+        }
+
+        if ($user->hasRole('candidate')) {
+            return redirect()->route('candidate.dashboard');
+        }
+        return redirect()->intended('/'); 
+        
     }
 }

@@ -5,36 +5,36 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany; 
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 
 
 class Vacancie extends Model
 {
-    use HasFactory ;
-     protected $fillable = [
-        'user_id' , 
-        'title' , 
-        'description' , 
-        'image' ,
-        'contract_type' , 
-        'location' , 
-        'status' ,
-        'finish_at' , 
+    use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'title',
+        'description',
+        'image',
+        'contract_type',
+        'location',
+        'status',
+        'finish_at',
 
-    ] ;
+    ];
 
 
-    public function user ():BelongsTo  
+    public function user(): BelongsTo
     {
-        return $this -> belongsTo(User::class) ; 
+        return $this->belongsTo(User::class);
     }
 
 
-    public function applications(): HasMany 
+    public function applications(): HasMany
     {
-        return $this -> hasMany(Application::class) ;
+        return $this->hasMany(Application::class);
     }
-    
+
 
 }

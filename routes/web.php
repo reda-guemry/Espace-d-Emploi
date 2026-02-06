@@ -16,6 +16,9 @@ Route::middleware(['auth' , 'verified' , 'role:recruiter']) -> group (function (
 
     Route::get('/recruiter/dashboard' , [RecruiterController::class , 'index'])-> name ('recruiter.dashboard') ; 
     Route::post('/vacancies' , [vacancieController::class , 'store']) -> name('vacancies.store') ;
+    Route::put('/vacancies/{id}' , [vacancieController::class , 'update']) -> name('vacancies.update') ;
+
+    
 });
 
 Route::middleware(['auth' , 'verified' , 'role:candidate']) -> group (function() {

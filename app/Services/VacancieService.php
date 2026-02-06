@@ -30,9 +30,18 @@ class VacancieService
 
     public function getVacanciesByLimit($limit)
     {
-        return $this -> vacancyRepository -> getVacanciesByLimit($limit) ; 
+        return $this->vacancyRepository->getVacanciesByLimit($limit);
     }
 
+    public function getAllVacancie($id)
+    {
+        return $this->vacancyRepository->getAllVacancie($id);
+    }
+
+    public function findVacancie($id)
+    {
+        return $this -> vacancyRepository -> findVacancieById ($id) ;
+    }
 
 
 

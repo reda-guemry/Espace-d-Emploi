@@ -31,7 +31,8 @@
                             </div>
 
                             <h3 class="font-bold text-white text-lg mb-1">{{ $recruteur->first_name ?? 'Recruiter' }}
-                                {{ $recruteur->last_name ?? 'Name' }}</h3>
+                                {{ $recruteur->last_name ?? 'Name' }}
+                            </h3>
                             <p class="text-sm text-gray-400 mb-1">{{ $recruteur->role ?? 'HR Manager' }}</p>
                             <p class="text-xs text-gray-600 mb-4">{{ $recruteur->location ?? 'Casablanca, Morocco' }}
                             </p>
@@ -117,17 +118,99 @@
                         </p>
                     </div>
 
-                    <div
-                        class="bg-zinc-900 rounded-2xl border border-red-900/30 p-6 shadow-lg shadow-red-900/10 flex flex-col items-center justify-center py-12 text-center">
-                        <div class="w-16 h-16 bg-zinc-800 rounded-full flex items-center justify-center mb-4">
-                            <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                            </svg>
-                        </div>
-                        <h3 class="text-white font-bold text-lg">No vacancies posted yet</h3>
-                        <p class="text-gray-500 text-sm mt-2 max-w-xs">Click the "Post Vacancy" button to find your next
-                            star employee.</p>
+                    <div class="space-y-4">
+
+                        @foreach ($vacancies as $vacancy)
+
+                            <div wire:key="{{ $vacancy->id }}"
+                                class="group flex flex-col md:flex-row md:items-center justify-between p-4 bg-zinc-900 border border-zinc-800 rounded-xl hover:border-red-500/30 transition-all duration-300 hover:shadow-lg hover:shadow-red-900/5">
+
+                                <div class="flex items-center gap-4 mb-4 md:mb-0 w-full md:w-auto">
+                                    <div
+                                        class="w-12 h-12 rounded-lg bg-zinc-800 flex items-center justify-center overflow-hidden border border-zinc-700 shrink-0">
+                                        @if($vacancy->image)
+                                            <img src="{{ asset('storage/vacancy/' . $vacancy->image) }}"
+                                                class="w-full h-full object-cover">
+                                        @else
+                                            <span
+                                                class="text-lg font-bold text-zinc-600 group-hover:text-red-500 transition-colors">
+                                                {{ substr($vacancy->title, 0, 1) }}
+                                            </span>
+                                        @endif
+                                    </div>
+
+                                    <div class="flex-1">
+                                        <h3
+                                            class="text-white text-base font-bold group-hover:text-red-500 transition-colors line-clamp-1">
+                                            {{ $vacancy->title }}
+                                        </h3>
+
+                                        <div class="flex items-center gap-3 text-xs text-zinc-500 mt-1">
+                                            <span class="flex items-center gap-1.5">
+                                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                                    </path>
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                                </svg>
+                                                {{ $vacancy->location }}
+                                            </span>
+                                            <span class="hidden sm:inline w-1 h-1 rounded-full bg-zinc-700"></span>
+                                            <span class="hidden sm:flex items-center gap-1.5">
+                                                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                        d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                                </svg>
+                                                {{ \Carbon\Carbon::parse($vacancy->created_at)->diffForHumans() }}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div
+                                    class="flex items-center justify-between md:justify-end gap-6 w-full md:w-auto border-t border-zinc-800 pt-3 md:pt-0 md:border-t-0">
+
+                                    <span
+                                        class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium border {{ $vacancy->status === 'open' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' : 'bg-red-500/10 text-red-400 border-red-500/20' }}">
+                                        <span
+                                            class="w-1.5 h-1.5 rounded-full {{ $vacancy->status === 'open' ? 'bg-emerald-400 animate-pulse' : 'bg-red-400' }}"></span>
+                                        {{ ucfirst($vacancy->status) }}
+                                    </span>
+
+                                    <div class="hidden md:block w-px h-8 bg-zinc-800 mx-2"></div>
+
+                                    <div class="flex flex-col items-end md:items-center min-w-[60px]">
+                                        <span class="text-white font-bold text-sm">12</span>
+                                        <span class="text-[10px] text-zinc-500 uppercase tracking-wider">Candidats</span>
+                                    </div>
+
+                                    <div class="flex items-center gap-2 md:ml-4">
+                                        <button onclick="Livewire.dispatch('openEditModal', { id: {{ $vacancy->id }} })"
+                                            class="p-2 text-zinc-400 hover:text-white hover:bg-zinc-800 rounded-lg transition-all border border-transparent hover:border-zinc-700">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                </path>
+                                            </svg>
+                                        </button>
+
+                                        <button wire:click="delete({{ $vacancy->id }})" wire:confirm="Delete this offer?"
+                                            class="p-2 text-zinc-400 hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-all border border-transparent hover:border-red-500/20">
+                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                                </path>
+                                            </svg>
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        @endforeach
                     </div>
                 </main>
 
@@ -157,16 +240,8 @@
             </div>
         </div>
 
-        {{--
-        ============================================
-        MODAL / POPUP SECTION
-        ============================================
-        --}}
-        {{--
-        ============================================
-        FIXED MODAL / POPUP SECTION
-        ============================================
-        --}}
+        {{--MODAL / POPUP SECTION--}}
+
         <div x-show="showOfferModal" style="display: none;" x-transition:enter="transition ease-out duration-300"
             x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100"
             x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100"
@@ -258,7 +333,7 @@
                                         placeholder="e.g. Remote, Casablanca">
                                 </div>
 
-                                <div class="space-y-2">
+                                <div class="space-y-2 col-span-1 col-span-3">
                                     <label for="finish_at"
                                         class="block text-xs font-bold text-gray-300 uppercase tracking-wider">Deadline</label>
                                     <input type="date" name="finish_at" id="finish_at" required
@@ -304,4 +379,7 @@
             </div>
         </div>
     </div>
+
+    <livewire:show-modal-vacancies />
+
 </x-app-layout>

@@ -24,4 +24,13 @@ class VacancieRepository
         return Vacancie::latest()->limit($limit)->get() ; 
     }
 
+    public function getAllVacancie($id) 
+    {
+        return Vacancie::where ('user_id' , $id) -> get(); 
+    }
+
+    public function findVacancieById($id) {
+        return Vacancie::find($id) ; 
+    }
+
 }

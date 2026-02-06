@@ -30,7 +30,9 @@ new class extends Component {
     }
 
 };
+
 ?>
+
 
 <div class="">
     
