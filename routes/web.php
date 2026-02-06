@@ -28,6 +28,8 @@ Route::middleware(['auth' , 'role:candidate']) -> group (function() {
 
     Route::get('candidate/dashboard' , [CandidateController::class , 'index']) -> name ('candidate.dashboard') ; 
 
+    Route::post('/vacancies/apply' , [vacancieController::class , 'apply']) -> name('vacancie.apply') ;
+
 });
 
 

@@ -6,29 +6,26 @@
             <div
                 class="bg-zinc-900 rounded-3xl border border-red-900/30 overflow-hidden shadow-2xl shadow-red-900/10 mb-8 relative group">
 
-                <div class="h-48 bg-gradient-to-r from-red-950 via-black to-zinc-900 relative">
-                    <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20">
-                    </div>
-                    <button
-                        class="absolute top-4 right-4 bg-black/50 hover:bg-red-600 text-white p-2 rounded-full backdrop-blur-md transition-all opacity-0 group-hover:opacity-100">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z">
-                            </path>
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                        </svg>
-                    </button>
+                <div class="relative h-48 w-full overflow-hidden">
+
+                    @if($candidate->cover_photo)
+                        <img src="{{ asset('storage/covers/' . $candidate->cover_photo) }}" alt="Cover Photo"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                    @else
+                        <div class="absolute inset-0 bg-gradient-to-r from-red-950 via-zinc-900 to-black"></div>
+                    @endif
+
+                    <div class="absolute inset-0 bg-gradient-to-t from-zinc-900 via-zinc-900/40 to-transparent"></div>
                 </div>
 
                 <div class="px-8 pb-8">
                     <div class="flex flex-col md:flex-row items-end -mt-16 relative z-10">
 
                         <div class="relative">
-                            <img class="w-36 h-36 rounded-3xl border-4 border-black shadow-2xl object-cover bg-zinc-800"
+                            <img class="w-36 h-36 rounded-3xl border-4 border-zinc-900 shadow-2xl object-cover bg-zinc-800"
                                 src="{{ asset('storage/profiles/' . $candidate->profile_photo) }}" alt="Profile">
                             <span
-                                class="absolute bottom-2 right-2 w-5 h-5 bg-green-500 border-4 border-black rounded-full"></span>
+                                class="absolute bottom-2 right-2 w-5 h-5 bg-green-500 border-4 border-zinc-900 rounded-full"></span>
                         </div>
 
                         <div
@@ -40,21 +37,7 @@
                                         <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                     </svg>
                                 </h1>
-                                <p class="text-red-500 font-medium text-lg">
-                                    {{ $candidate->headline ?? 'Senior Software Engineer' }}
-                                </p>
-                                <p class="text-gray-500 text-sm flex items-center gap-1 mt-1">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
-                                        </path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                    </svg>
-                                    {{ $candidate->city ?? 'Casablanca' }}, Morocco
-                                </p>
                             </div>
-
                         </div>
                     </div>
                 </div>
@@ -146,8 +129,8 @@
 
                                         <div class="flex gap-2">
 
-                                            <form action="{{ route('connection.accepte', $invitation->id) }}"
-                                                method="POST" class="flex-1">
+                                            <form action="{{ route('connection.accepte', $invitation->id) }}" method="POST"
+                                                class="flex-1">
                                                 @csrf
                                                 <button type="submit"
                                                     class="w-full py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-lg transition-colors shadow-lg shadow-red-900/20">
