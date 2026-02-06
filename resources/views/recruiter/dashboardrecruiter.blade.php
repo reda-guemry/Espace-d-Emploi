@@ -37,24 +37,7 @@
                             <p class="text-xs text-gray-600 mb-4">{{ $recruteur->location ?? 'Casablanca, Morocco' }}
                             </p>
 
-                            <div class="grid grid-cols-3 gap-4 mb-6">
-                                <div class="text-center">
-                                    <div class="text-xl font-bold text-white">{{ $recruteur->connections_count ?? 0 }}
-                                    </div>
-                                    <div class="text-xs text-gray-500">Connections</div>
-                                </div>
-                                <div class="text-center">
-                                    <div class="text-xl font-bold text-white">{{ $recruteur->followers_count ?? 156 }}
-                                    </div>
-                                    <div class="text-xs text-gray-500">Followers</div>
-                                </div>
-                                <div class="text-center">
-                                    <div class="text-xl font-bold text-white">{{ $recruteur->following_count ?? 142 }}
-                                    </div>
-                                    <div class="text-xs text-gray-500">Following</div>
-                                </div>
-                            </div>
-
+                            
                             <div class="flex flex-col gap-3">
                                 {{-- NEW BUTTON: Add Offer --}}
                                 <button @click="showOfferModal = true"
