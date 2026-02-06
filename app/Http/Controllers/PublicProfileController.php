@@ -13,7 +13,8 @@ class PublicProfileController extends Controller
     
     public function __construct(
         private CandidateService $candidateService , 
-        private RecruiterService $recruiterService
+        private RecruiterService $recruiterService , 
+        private VacancieService $vacancieService , 
     ) {}
 
     public function showCandidate($id) 
@@ -31,7 +32,9 @@ class PublicProfileController extends Controller
 
         $user = $this -> recruiterService -> getRecruteurProfile ($id) ;
 
-        return view('recruiter.public-recruiter' , compact('user')) ;
+        $vacancies = $this -> vacancieService -> getAllVacancie($id) ;
+
+        return view('recruiter.public-recruiter' , compact('user' , 'vacancies')) ;
     }
 
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ConnectionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicProfileController;
 use Illuminate\Support\Facades\Route;
@@ -37,6 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/candidate/{id}' , [PublicProfileController::class , 'showCandidate']) -> name('public-candidate') ;
     Route::get('/recruiter/{id}' , [PublicProfileController::class , 'showRecruiter']) -> name('public-recruiter') ;
+
+    Route::post('/connection/{id}' , [ConnectionController::class , 'store']) ->name('connection.store') ;
 
 });
 
