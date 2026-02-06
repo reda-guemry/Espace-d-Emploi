@@ -1,3 +1,6 @@
+<x-app-layout>
+
+
 <div class="min-h-screen bg-black flex text-zinc-300 font-sans">
     
     <aside class="w-20 lg:w-64 bg-zinc-950 border-r border-zinc-800 flex flex-col justify-between py-6">
@@ -70,3 +73,6 @@
 
     </main>
 </div>  
+
+
+</x-app-layout>
