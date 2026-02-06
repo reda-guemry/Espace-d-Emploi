@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Connection;
 use App\Services\ConnectionService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +21,23 @@ class ConnectionController extends Controller
 
         $this -> connectionService -> store ($sender_id , $receiver_id) ;
 
-        return redirect() -> back() -> with('succes' , 'Connection create') ; 
+        return redirect() -> back(); 
 
     }
+
+    public function accept(Connection $connection) {
+        // dd($connection) ;
+        $this -> connectionService -> accept($connection) ;
+
+        return redirect() -> back() ;
+    }
+
+    public function refuse (Connection $connection)
+    {
+        $this -> connectionService -> refuse($connection) ;
+
+        return redirect() -> back() ;
+    }
+
+
 }

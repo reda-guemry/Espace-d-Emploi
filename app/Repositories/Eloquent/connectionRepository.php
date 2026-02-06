@@ -25,6 +25,18 @@ class connectionRepository
         ]) ; 
     }
 
+    public function accept(Connection $connection) {
+        return $connection-> update([
+            'status' => 'accepted'
+        ]); 
+    }
+
+    public function refuse(Connection $connection) 
+    {
+        return $connection -> update([
+            'status' => 'rejected'
+        ]) ; 
+    }
 
     public function checkUserConnect($sender_id, $receiver_id)
     {
@@ -39,6 +51,7 @@ class connectionRepository
         -> exists() ;
 
     }
+
 
 
 

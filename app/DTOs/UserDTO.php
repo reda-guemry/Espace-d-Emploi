@@ -14,7 +14,8 @@ class UserDTO
         public readonly string $email,
         public readonly string $profile_photo , 
         public readonly ?string $bio  ,
-        public readonly ?string $cover_photo
+        public readonly ?string $cover_photo , 
+        public readonly ?string $publicProfileUrl
         )
     {}
 
@@ -28,7 +29,7 @@ class UserDTO
             profile_photo : $user -> profile_photo , 
             cover_photo : $user -> cover_photo , 
             bio : $user -> bio , 
-            
+            publicProfileUrl : $user -> publicProfilUrl
         ) ;
     }
 

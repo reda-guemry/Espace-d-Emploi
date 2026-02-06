@@ -37,7 +37,7 @@
                             <p class="text-xs text-gray-600 mb-4">{{ $recruteur->location ?? 'Casablanca, Morocco' }}
                             </p>
 
-                            
+
                             <div class="flex flex-col gap-3">
                                 {{-- NEW BUTTON: Add Offer --}}
                                 <button @click="showOfferModal = true"
@@ -78,14 +78,6 @@
                                 </svg>
                                 My Vacancies
                             </a>
-                            <a href="#about"
-                                class="flex items-center gap-3 px-4 py-3 text-gray-400 hover:bg-zinc-800 hover:text-white rounded-xl font-medium transition-all">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                </svg>
-                                About
-                            </a>
                         </nav>
                     </div>
                 </aside>
@@ -116,15 +108,9 @@
                                 <div class="flex items-center gap-4 mb-4 md:mb-0 w-full md:w-auto">
                                     <div
                                         class="w-12 h-12 rounded-lg bg-zinc-800 flex items-center justify-center overflow-hidden border border-zinc-700 shrink-0">
-                                        @if($vacancy->image)
-                                            <img src="{{ asset('storage/vacancy/' . $vacancy->image) }}"
-                                                class="w-full h-full object-cover">
-                                        @else
-                                            <span
-                                                class="text-lg font-bold text-zinc-600 group-hover:text-red-500 transition-colors">
-                                                {{ substr($vacancy->title, 0, 1) }}
-                                            </span>
-                                        @endif
+
+                                        <img src="{{ asset('storage/vacancy/' . $vacancy->image) }}"
+                                            class="w-full h-full object-cover">
                                     </div>
 
                                     <div class="flex-1">
@@ -209,23 +195,70 @@
 
                 <aside class="lg:col-span-3 space-y-6">
                     <div class="bg-zinc-900 rounded-2xl border border-red-900/30 p-6 shadow-lg shadow-red-900/10">
-                        <div class="flex items-center gap-2 mb-4">
+
+                        <div class="flex items-center gap-2 mb-6">
                             <div class="w-1 h-6 bg-gradient-to-b from-red-600 to-red-800 rounded-full"></div>
-                            <h3 class="font-bold text-white">Candidates Activity</h3>
+                            <h3 class="font-bold text-white">Invitation Request</h3>
+                            <span
+                                class="ml-auto bg-zinc-800 text-zinc-400 text-xs px-2 py-0.5 rounded-full border border-zinc-700">
+                                {{ $invitationsConnect->count() }}
+                            </span>
                         </div>
+
                         <div class="space-y-4">
-                            @foreach(range(1, 3) as $index)
-                                <div class="flex items-start gap-3 pb-4 border-b border-red-900/20 last:border-0">
-                                    <img src="https://ui-avatars.com/api/?name=User{{ $index }}&background=DC2626&color=fff"
-                                        class="w-10 h-10 rounded-full border-2 border-red-600" alt="">
-                                    <div class="flex-1">
-                                        <p class="text-sm text-gray-300 mb-1"><span
-                                                class="font-semibold text-white">Candidate {{ $index }}</span> applied to
-                                            Frontend Dev</p>
-                                        <p class="text-xs text-gray-600">{{ rand(1, 60) }} minutes ago</p>
+                            @forelse($invitationsConnect as $invitation)
+
+                                <div
+                                    class="relative bg-zinc-950 border border-zinc-800 rounded-xl p-4 group hover:border-red-900/30 transition-all">
+
+                                    <a href="{{ $invitation->sender->publicProfilUrl }}"
+                                        class="absolute top-3 right-3 text-zinc-600 hover:text-white transition-colors"
+                                        title="View Profile">
+                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                        </svg>
+                                    </a>
+
+                                    <div class="flex items-center gap-3 mb-4">
+                                        <img src="{{ asset('storage/profiles/' . $invitation->sender->profile_photo) }}"
+                                            class="w-10 h-10 rounded-full border border-zinc-700 object-cover">
+                                        <div>
+                                            <h4 class="font-bold text-white text-sm leading-tight">
+                                                {{ $invitation->sender->first_name }} {{ $invitation->sender->last_name }}
+                                            </h4>
+                                            <p class="text-xs text-zinc-500 mt-0.5">
+                                                {{ $invitation->created_at->diffForHumans() }}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex gap-2">
+
+                                        <form action="{{ route('connection.accepte' , $invitation->id ) }}" method="POST" class="flex-1"> 
+                                            @csrf
+                                            <button type="submit"
+                                                class="w-full py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-lg transition-colors shadow-lg shadow-red-900/20">
+                                                Accept
+                                            </button>
+                                        </form>
+
+                                        <form action="{{ route('connection.refuse' , $invitation ->id) }}" method="POST" class="flex-1"> @csrf
+                                            @csrf
+                                            <button type="submit"
+                                                class="w-full py-1.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white text-xs font-bold rounded-lg border border-zinc-700 transition-colors">
+                                                Refuse
+                                            </button>
+                                        </form>
+
                                     </div>
                                 </div>
-                            @endforeach
+
+                            @empty
+                                <div class="text-center py-4">
+                                    <p class="text-zinc-500 text-sm">No new requests.</p>
+                                </div>
+                            @endforelse
                         </div>
                     </div>
                 </aside>

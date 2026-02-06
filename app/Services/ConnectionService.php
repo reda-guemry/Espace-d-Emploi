@@ -2,7 +2,10 @@
 
 namespace App\Services;
 
+use App\Models\Connection;
 use App\Repositories\Eloquent\connectionRepository;
+use Illuminate\Support\Facades\Auth;
+
 
 class ConnectionService
 {
@@ -32,6 +35,30 @@ class ConnectionService
             // dd('skowjsiowj');
 
         return $this->connectionRepository->store($sender_id, $receiver_id);
+    }
+
+
+    public function accept(Connection $connection) {
+
+        if($connection -> receiver_id !== Auth::id()) {
+            abort(403) ; 
+        }
+
+        return $this -> connectionRepository -> accept($connection) ; 
+
+
+    }
+
+    public function refuse(Connection $connection) {
+
+        if($connection -> receiver_id !== Auth::id()) {
+            abort(403) ; 
+        }
+
+        return $this -> connectionRepository -> refuse($connection) ; 
+
+
+
     }
 
 
