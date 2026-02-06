@@ -26,7 +26,9 @@ class VacancieRepository
 
     public function getAllVacancie($id)
     {
-        return Vacancie::where('user_id', $id)->get();
+        return Vacancie::where('user_id', $id)
+            ->withCount('applications')
+            ->get();
     }
 
     public function findVacancieById($id)
@@ -34,7 +36,7 @@ class VacancieRepository
         return Vacancie::find($id);
     }
 
-    public function update($id , $data)
+    public function update($id, $data)
     {
         // dd($data) ;
 
@@ -44,7 +46,7 @@ class VacancieRepository
 
     public function delete($id)
     {
-        return Vacancie::destroy($id) ; 
+        return Vacancie::destroy($id);
     }
 
 }

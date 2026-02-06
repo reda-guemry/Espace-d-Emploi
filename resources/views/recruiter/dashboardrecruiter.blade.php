@@ -108,7 +108,7 @@
                                 <div class="flex items-center gap-4 mb-4 md:mb-0 w-full md:w-auto">
                                     <div
                                         class="w-12 h-12 rounded-lg bg-zinc-800 flex items-center justify-center overflow-hidden border border-zinc-700 shrink-0">
-                                        
+
                                         <img src="{{ asset('storage/vacancy/' . $vacancy->image) }}"
                                             class="w-full h-full object-cover">
                                     </div>
@@ -157,7 +157,7 @@
                                     <div class="hidden md:block w-px h-8 bg-zinc-800 mx-2"></div>
 
                                     <div class="flex flex-col items-end md:items-center min-w-[60px]">
-                                        <span class="text-white font-bold text-sm">12</span>
+                                        <span class="text-white font-bold text-sm">{{ $vacancy ->applications_count }}</span>
                                         <span class="text-[10px] text-zinc-500 uppercase tracking-wider">Candidats</span>
                                     </div>
 

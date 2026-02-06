@@ -16,8 +16,7 @@ return new class extends Migration
 
             $table -> foreignId('vacancie_id') -> constrained() -> onDelete('cascade') ; 
             $table -> foreignId('user_id') -> constrained() -> onDelete('cascade') ; 
-            $table -> text('message') ;
-            $table -> string('cv') ; 
+            $table -> text('message')->nullable() ;
             
             $table -> string('cv_attached') -> nullable() ; 
 

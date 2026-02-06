@@ -37,7 +37,6 @@ class vacancieController extends Controller
 
     public function apply(Request $request) 
     {
-        $vacancieId  = $request -> input('vacancy_id') ; 
 
         $request -> validate([
             'vacancy_id' => 'required | exists:vacancies,id' , 
@@ -48,11 +47,12 @@ class vacancieController extends Controller
             'cv' => $request -> file('cv') , 
             'message' => $request -> input('message') , 
             'user_id' => Auth::id() , 
-
+            'vacancieId' => $request -> input('vacancy_id') ,
         ] ;
 
-        $this -> vacancyService -> apply($data) ;
+        $this -> vacancyService -> apply($data ) ;
 
+        return redirect() -> back() ;
 
     }
 

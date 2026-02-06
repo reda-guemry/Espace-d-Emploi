@@ -5,6 +5,9 @@ namespace App\Services;
 use App\DTOs\VacancieDTO;
 use App\DTOs\VacancieUpdateDTO;
 use App\Repositories\Eloquent\VacancieRepository;
+use App\Repositories\Eloquent\ApplicationRepository;
+
+
 
 class VacancieService
 {
@@ -12,7 +15,10 @@ class VacancieService
      * Create a new class instance.
      */
     public function __construct(
-        public VacancieRepository $vacancieRepository
+        public VacancieRepository $vacancieRepository , 
+        public ApplicationRepository $applicationRepository
+
+
     ) {
     }
 
@@ -66,6 +72,18 @@ class VacancieService
     public function deleteVacancie($id)
     {
         return $this -> vacancieRepository -> delete($id) ;  
+    }
+
+    public function apply($data )
+    {
+        if(isset($data['cv'])){
+            $data['cv'] = $data['cv'] -> store('cv' , 'public'); 
+        }
+
+
+        return $this -> applicationRepository -> store($data) ;
+
+
     }
 
 

@@ -32,7 +32,7 @@ class RecruiterController extends Controller
             ->get();
 
 
-        // dd($invitationsConnect);
+        // dd($vacancies);
         // var_dump($candidates) ;
         // exit ; 
 
