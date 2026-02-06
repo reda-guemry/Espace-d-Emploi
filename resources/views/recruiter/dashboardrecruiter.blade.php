@@ -108,7 +108,7 @@
                                 <div class="flex items-center gap-4 mb-4 md:mb-0 w-full md:w-auto">
                                     <div
                                         class="w-12 h-12 rounded-lg bg-zinc-800 flex items-center justify-center overflow-hidden border border-zinc-700 shrink-0">
-
+                                        
                                         <img src="{{ asset('storage/vacancy/' . $vacancy->image) }}"
                                             class="w-full h-full object-cover">
                                     </div>

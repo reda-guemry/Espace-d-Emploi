@@ -1,4 +1,4 @@
-<section class="relative">
+<section class="relative" x-data="{ activeModal: null }">
     <header class="mb-8 relative z-10">
         <h2 class="text-2xl font-bold text-white tracking-tight">
             {{ __('Profile Settings') }}
@@ -137,8 +137,8 @@
             <div class="md:col-span-2 space-y-2">
                 <x-input-label for="specialty" :value="__('Skills')"
                     class="text-xs uppercase tracking-wider text-zinc-500 font-bold ml-1" />
-                
-                    <livewire:skill-add />
+
+                <livewire:skill-add />
 
                 <x-input-error class="mt-2 text-red-400 text-sm" :messages="$errors->get('specialty')" />
             </div>
@@ -164,17 +164,18 @@
         </div>
 
         {{-- =======================
-        3. HISTORY SECTION
+        3. HISTORY SECTION (Triggers)
         ======================= --}}
-        <div class="pt-6">
+        <div class="pt-6" >
             <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
                 <span class="w-1 h-6 bg-red-600 rounded-full"></span>
                 Professional History
             </h3>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <a href="#"
-                    class="group relative bg-zinc-900 border border-zinc-800 rounded-2xl p-5 hover:border-red-500/50 hover:bg-zinc-900/80 transition-all duration-300">
+
+                <button type="button" @click="activeModal = 'experience'"
+                    class="group relative bg-zinc-900 border border-zinc-800 rounded-2xl p-5 hover:border-red-500/50 hover:bg-zinc-900/80 transition-all duration-300 w-full text-left">
                     <div class="flex items-start justify-between">
                         <div class="flex items-center gap-4">
                             <div
@@ -186,20 +187,20 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold group-hover:text-red-400 transition">Experience</h4>
-                                <p class="text-xs text-zinc-500">Manage your job history</p>
+                                <h4 class="text-white font-semibold group-hover:text-red-400 transition">Add Experience
+                                </h4>
+                                <p class="text-xs text-zinc-500">Add a past or current job</p>
                             </div>
                         </div>
                         <svg class="w-5 h-5 text-zinc-600 group-hover:text-red-500 transform group-hover:translate-x-1 transition"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                         </svg>
                     </div>
-                </a>
+                </button>
 
-                <a href="#"
-                    class="group relative bg-zinc-900 border border-zinc-800 rounded-2xl p-5 hover:border-blue-500/50 hover:bg-zinc-900/80 transition-all duration-300">
+                <button type="button" @click="activeModal = 'education'"
+                    class="group relative bg-zinc-900 border border-zinc-800 rounded-2xl p-5 hover:border-blue-500/50 hover:bg-zinc-900/80 transition-all duration-300 w-full text-left">
                     <div class="flex items-start justify-between">
                         <div class="flex items-center gap-4">
                             <div
@@ -213,18 +214,20 @@
                                 </svg>
                             </div>
                             <div>
-                                <h4 class="text-white font-semibold group-hover:text-blue-400 transition">Education</h4>
-                                <p class="text-xs text-zinc-500">Manage your degrees</p>
+                                <h4 class="text-white font-semibold group-hover:text-blue-400 transition">Add Education
+                                </h4>
+                                <p class="text-xs text-zinc-500">Add a degree or certificate</p>
                             </div>
                         </div>
                         <svg class="w-5 h-5 text-zinc-600 group-hover:text-blue-500 transform group-hover:translate-x-1 transition"
                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                         </svg>
                     </div>
-                </a>
+                </button>
             </div>
+
+
         </div>
 
         <div class="flex items-center justify-end gap-4 pt-6 border-t border-zinc-800/50">
@@ -242,4 +245,7 @@
             </x-primary-button>
         </div>
     </form>
+    {{-- INCLUDE MODALS HERE (Inside the x-data scope) --}}
+    @include('profile.partials.experience-modal')
+    @include('profile.partials.education-modal')
 </section>

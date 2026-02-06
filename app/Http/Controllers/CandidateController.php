@@ -22,12 +22,17 @@ class CandidateController extends Controller
 
         $candidate = $this -> candidateService -> getCandidateProfile($id) ;
 
-        
+        $invitationsConnect = Auth::user() -> receivedRequests() 
+            ->with('sender')
+            ->where('status' , 'pending')
+            ->get() ; 
+
+        // dd($invitationsConnect) ;
         
         // var_dump($people) ; 
         // exit ; 
 
-        return view ('candidate.dashboardcandidate' , compact('candidate')) ; 
+        return view ('candidate.dashboardcandidate' , compact('candidate' , 'invitationsConnect')) ; 
     }
 
 
