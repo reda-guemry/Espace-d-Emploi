@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Spatie\Permission\Models\Role ; 
+use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
 
 
@@ -20,10 +20,10 @@ class User extends Authenticatable
 
 
 
-    use HasRoles ; 
+    use HasRoles;
 
     /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable ;
+    use HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -35,10 +35,10 @@ class User extends Authenticatable
         'last_name',
         'email',
         'password',
-        'profile_photo' , 
-        'created_at' , 
-        'cover_photo' ,
-        'bio' , 
+        'profile_photo',
+        'created_at',
+        'cover_photo',
+        'bio',
     ];
 
 
@@ -68,36 +68,43 @@ class User extends Authenticatable
 
     public function sentRequests(): HasMany
     {
-        return $this -> hasMany(Connection::class , 'sender_id') ; 
+        return $this->hasMany(Connection::class, 'sender_id');
     }
 
     public function receivedRequests(): HasMany
     {
-        return $this -> hasMany(Connection::class , 'receiver_id' ) ; 
+        return $this->hasMany(Connection::class, 'receiver_id');
 
     }
 
-    public function application(): belongsToMany 
+    public function application(): belongsToMany
     {
-        return $this -> belongsToMany(Application::class) ;
+        return $this->belongsToMany(Application::class);
     }
 
-    public function educations(): belongsToMany 
+    public function educations(): belongsToMany
     {
-        return $this -> belongsToMany(Education::class) ; 
+        return $this->belongsToMany(Education::class);
     }
 
     public function experiences(): BelongsToMany
     {
-        return $this -> belongsToMany (Experience::class) ; 
+        return $this->belongsToMany(Experience::class);
     }
 
-    public function skills(): BelongsToMany
+    public function skills(): hasMany
     {
-        return $this -> belongsToMany(Skill::class) ; 
+        return $this->hasMany(Skill::class);
     }
 
+    public function getPublicProfilUrlAttribute()
+    {
+        if ($this->hasRole('recruiter')) {
+            return route('public-recruiter' , $this -> id) ;
+        }
+        
+        return route('public-candidate' , $this -> id) ; 
 
-
+    }
 
 }

@@ -69,7 +69,7 @@ new class extends Component {
                 <ul class="py-1">
                     @foreach($users as $user)
                         <li class="border-b border-red-900/10 last:border-0">
-                            <a href="#" class="block px-4 py-3 hover:bg-zinc-800 transition-colors duration-150 group">
+                            <a href="{{ $user ->Public_profil_url }}" class="block px-4 py-3 hover:bg-zinc-800 transition-colors duration-150 group">
                                 <div class="flex items-center">
 
                                     <div class="flex-shrink-0 relative">
