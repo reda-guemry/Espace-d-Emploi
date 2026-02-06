@@ -1,30 +1,7 @@
+<x-app-layout>
+
+
 <div class="min-h-screen bg-zinc-950 text-zinc-300 font-sans selection:bg-red-500/30">
-
-    <header class="border-b border-zinc-800 bg-zinc-900/50 backdrop-blur-md sticky top-0 z-40">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between gap-6">
-            
-            <div class="font-bold text-2xl text-white tracking-tighter">
-                Job<span class="text-red-600">Match</span>
-            </div>
-
-            <div class="flex-1 max-w-2xl">
-                <div class="relative group">
-                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
-                        <svg class="h-5 w-5 text-zinc-500 group-focus-within:text-red-500 transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                        </svg>
-                    </div>
-                    <input type="text" 
-                        class="block w-full pl-11 pr-4 py-3 bg-zinc-900 border border-zinc-800 rounded-xl leading-5 text-zinc-300 placeholder-zinc-500 focus:outline-none focus:bg-black focus:border-red-600 focus:ring-1 focus:ring-red-600 sm:text-sm transition-all shadow-lg" 
-                        placeholder="Search for jobs, companies, or keywords...">
-                </div>
-            </div>
-
-            <div class="flex items-center gap-4">
-                <div class="h-10 w-10 rounded-full bg-gradient-to-tr from-red-600 to-red-900 border border-white/10"></div>
-            </div>
-        </div>
-    </header>
 
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
@@ -136,3 +113,7 @@
         </div>
     </main>
 </div>
+
+
+
+</x-app-layout>

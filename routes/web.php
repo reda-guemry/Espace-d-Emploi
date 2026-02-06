@@ -35,8 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/candidate/{$id}' , [PublicProfileController::class , 'showCandidate']) -> name('public-candidate') ;
-    Route::get('/recruiter/{$id}' , [PublicProfileController::class , 'showRecruiter']) -> name('public-recruiter') ;
+    Route::get('/candidate/{id}' , [PublicProfileController::class , 'showCandidate']) -> name('public-candidate') ;
+    Route::get('/recruiter/{id}' , [PublicProfileController::class , 'showRecruiter']) -> name('public-recruiter') ;
 
 });
 
