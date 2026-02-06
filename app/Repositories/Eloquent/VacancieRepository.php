@@ -21,16 +21,30 @@ class VacancieRepository
 
     public function getVacanciesByLimit($limit)
     {
-        return Vacancie::latest()->limit($limit)->get() ; 
+        return Vacancie::latest()->limit($limit)->get();
     }
 
-    public function getAllVacancie($id) 
+    public function getAllVacancie($id)
     {
-        return Vacancie::where ('user_id' , $id) -> get(); 
+        return Vacancie::where('user_id', $id)->get();
     }
 
-    public function findVacancieById($id) {
-        return Vacancie::find($id) ; 
+    public function findVacancieById($id)
+    {
+        return Vacancie::find($id);
+    }
+
+    public function update($id , $data)
+    {
+        // dd($data) ;
+
+        return Vacancie::where('id', $id)->update($data);
+
+    }
+
+    public function delete($id)
+    {
+        return Vacancie::destroy($id) ; 
     }
 
 }

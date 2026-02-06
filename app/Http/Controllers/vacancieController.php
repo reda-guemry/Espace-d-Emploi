@@ -4,25 +4,33 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\VacancieRequest;
 use Illuminate\Http\Request;
-use App\Services\VacancieService  ;
+use App\Services\VacancieService;
 
 class vacancieController extends Controller
 {
 
     public function __construct(
-        private VacancieService $vacancyService 
-    ) {}
+        private VacancieService $vacancyService
+    ) {
+    }
 
-    public function store(VacancieRequest $request) {
-    
-        $data = $request -> validated() ; 
+    public function store(VacancieRequest $request)
+    {
 
-        $data['user_id'] = auth() -> id() ;  
+        $data = $request->validated();
 
-        $this -> vacancyService -> createNewVacancy($data) ;
-    
+        $data['user_id'] = auth()->id();
+
+        $this->vacancyService->createNewVacancy($data);
+
         return redirect()->back()->with('success', 'Vacancy Created');
 
+    }
+
+    public function delete($id) {
+        $this -> vacancyService -> deleteVacancie($id) ;
+
+        return redirect() -> back() -> with('succes' , 'Vacancy Deletted') ; 
     }
 
 }

@@ -12,14 +12,14 @@ class VacancieDTO
      */
     public function __construct(
         public readonly ?int $id,
-        public readonly int $user_id,
-        public readonly string $title,
-        public readonly string $description,
+        public readonly ?int $user_id,
+        public readonly ?string $title,
+        public readonly ?string $description,
         public readonly ?string $image,
-        public readonly string $contract_type,
-        public readonly string $location,
-        public readonly string $status,
-        public readonly string $finish_at,
+        public readonly ?string $contract_type,
+        public readonly ?string $location,
+        public readonly ?string $status,
+        public readonly ?string $finish_at,
         public readonly ?string $created_at = null
     ) {}
 

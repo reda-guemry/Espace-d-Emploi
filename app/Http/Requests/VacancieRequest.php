@@ -27,7 +27,7 @@ class VacancieRequest extends FormRequest
             'contract_type' => 'required | string' , 
             'location' => 'required | string ' , 
             'finish_at' => 'required | date' , 
-            'image' => 'required | image' , 
+            'image' => 'nullable | image' , 
         ];
     }
 }
