@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\VacancieService;
+use App\Services\VacancieService ;
 use Illuminate\Http\Request;
 use App\Services\RecruiterService;
 use Illuminate\Support\Facades\Auth;

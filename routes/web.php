@@ -30,6 +30,10 @@ Route::middleware(['auth' , 'role:candidate']) -> group (function() {
 
     Route::post('/vacancies/apply' , [vacancieController::class , 'apply']) -> name('vacancie.apply') ;
 
+    Route::post('/education/store' , [CandidateController::class , 'storeEducation'])->name('education.store') ;
+    Route::post('/experience/store' , [CandidateController::class , 'storeEcperience'])->name('experience.store') ;
+
+
 });
 
 
