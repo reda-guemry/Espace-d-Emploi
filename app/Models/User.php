@@ -82,19 +82,14 @@ class User extends Authenticatable
         return $this->belongsToMany(Application::class);
     }
 
-    public function educations(): belongsToMany
+    public function educations(): HasMany
     {
-        return $this->belongsToMany(Education::class);
+        return $this->hasMany(Education::class);
     }
 
-    public function experiences(): BelongsToMany
+    public function experiences(): HasMany
     {
-        return $this->belongsToMany(Experience::class);
-    }
-
-    public function skills(): hasMany
-    {
-        return $this->hasMany(Skill::class);
+        return $this->hasMany(Experience::class);
     }
 
     public function getPublicProfilUrlAttribute()

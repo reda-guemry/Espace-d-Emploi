@@ -9,7 +9,7 @@
     style="display: none;">
 
     <div @click.away="activeModal = null"
-        class="bg-zinc-900 border border-red-900/30 w-full max-w-lg rounded-2xl shadow-2xl shadow-red-900/20 relative overflow-hidden"
+        class="bg-zinc-900 z-50 border border-red-900/30 w-full max-w-lg rounded-2xl shadow-2xl shadow-red-900/20 relative overflow-hidden"
         x-transition:enter="transition ease-out duration-300"
         x-transition:enter-start="opacity-0 scale-95"
         x-transition:enter-end="opacity-100 scale-100">

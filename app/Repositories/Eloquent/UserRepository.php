@@ -17,4 +17,9 @@ class UserRepository implements UserRepositoryInterface
 
     }
 
+    public function getUserAndDetaildById($id) 
+    {
+        return User::with(['educations' , 'experiences']) -> find($id) ; 
+    }
+
 }

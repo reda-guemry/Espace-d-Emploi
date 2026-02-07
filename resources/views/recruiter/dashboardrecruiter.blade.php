@@ -33,8 +33,6 @@
                             <h3 class="font-bold text-white text-lg mb-1">{{ $recruteur->first_name ?? 'Recruiter' }}
                                 {{ $recruteur->last_name ?? 'Name' }}
                             </h3>
-                            <p class="text-sm text-gray-400 mb-1">{{ $recruteur->role ?? 'HR Manager' }}</p>
-                            <p class="text-xs text-gray-600 mb-4">{{ $recruteur->location ?? 'Casablanca, Morocco' }}
                             </p>
 
 
@@ -48,22 +46,6 @@
                                     </svg>
                                     Post Vacancy
                                 </button>
-
-                                <div class="flex gap-2">
-                                    <button
-                                        class="flex-1 py-2 bg-zinc-800 hover:bg-zinc-700 text-gray-300 text-sm font-semibold rounded-xl transition-all border border-zinc-700">
-                                        Edit Profile
-                                    </button>
-                                    <button
-                                        class="px-4 py-2 bg-zinc-800 hover:bg-zinc-700 border border-zinc-700 text-gray-300 rounded-xl transition-all">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                        </svg>
-                                    </button>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -157,7 +139,8 @@
                                     <div class="hidden md:block w-px h-8 bg-zinc-800 mx-2"></div>
 
                                     <div class="flex flex-col items-end md:items-center min-w-[60px]">
-                                        <span class="text-white font-bold text-sm">{{ $vacancy ->applications_count }}</span>
+                                        <span
+                                            class="text-white font-bold text-sm">{{ $vacancy->applications_count }}</span>
                                         <span class="text-[10px] text-zinc-500 uppercase tracking-wider">Candidats</span>
                                     </div>
 
@@ -235,7 +218,8 @@
 
                                     <div class="flex gap-2">
 
-                                        <form action="{{ route('connection.accepte' , $invitation->id ) }}" method="POST" class="flex-1"> 
+                                        <form action="{{ route('connection.accepte', $invitation->id) }}" method="POST"
+                                            class="flex-1">
                                             @csrf
                                             <button type="submit"
                                                 class="w-full py-1.5 bg-red-600 hover:bg-red-700 text-white text-xs font-bold rounded-lg transition-colors shadow-lg shadow-red-900/20">
@@ -243,7 +227,8 @@
                                             </button>
                                         </form>
 
-                                        <form action="{{ route('connection.refuse' , $invitation ->id) }}" method="POST" class="flex-1"> @csrf
+                                        <form action="{{ route('connection.refuse', $invitation->id) }}" method="POST"
+                                            class="flex-1"> @csrf
                                             @csrf
                                             <button type="submit"
                                                 class="w-full py-1.5 bg-zinc-800 hover:bg-zinc-700 text-zinc-300 hover:text-white text-xs font-bold rounded-lg border border-zinc-700 transition-colors">

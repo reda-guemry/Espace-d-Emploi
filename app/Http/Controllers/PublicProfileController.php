@@ -19,7 +19,7 @@ class PublicProfileController extends Controller
 
     public function showCandidate($id) 
     {
-        $user = $this -> candidateService -> getCandidateProfile($id) ;  
+        $user = $this -> candidateService -> getCandidateProfileDetails($id) ;  
 
         // dd($user) ; 
 

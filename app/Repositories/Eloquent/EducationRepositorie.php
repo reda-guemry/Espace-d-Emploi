@@ -28,4 +28,10 @@ class EducationRepositorie
         ]);
     }
 
+    public function destroy($id) 
+    {
+        return Education::destroy($id) ; 
+    }
+
+
 }

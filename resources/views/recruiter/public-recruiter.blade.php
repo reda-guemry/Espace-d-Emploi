@@ -10,7 +10,7 @@
 
                         <div class="flex flex-col items-center text-center">
                             <div class="relative mb-4">
-                                <img src="https://ui-avatars.com/api/?name=John+Recruiter&background=18181b&color=ef4444"
+                                <img src="{{ asset('storage/profiles/' . $user ->profile_photo) }}"
                                     class="w-32 h-32 rounded-full border-4 border-zinc-950 shadow-lg object-cover">
                                 <div
                                     class="absolute bottom-1 right-1 bg-red-600 p-1.5 rounded-full border-4 border-zinc-900">
@@ -26,11 +26,7 @@
                             </h1>
                             <p class="text-red-500 font-medium text-sm mt-1">Senior Talent Acquisition</p>
 
-                            <div
-                                class="mt-3 inline-flex items-center gap-2 px-3 py-1 bg-zinc-950 border border-zinc-800 rounded-full">
-                                <span class="w-2 h-2 rounded-full bg-white"></span>
-                                <span class="text-xs font-bold text-zinc-400 uppercase tracking-wide">Google Inc.</span>
-                            </div>
+                            
                         </div>
 
                         <div class="mt-8 space-y-3">

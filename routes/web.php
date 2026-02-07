@@ -3,14 +3,15 @@
 use App\Http\Controllers\ConnectionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicProfileController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RecruiterController ; 
 use App\Http\Controllers\CandidateController ;
 use App\Http\Controllers\vacancieController ; 
 
-
 Route::get('/', function () {
-    return 'welcom';
+    $data = User::paginate(2);
+    return $data;
 });
 
 
@@ -32,6 +33,10 @@ Route::middleware(['auth' , 'role:candidate']) -> group (function() {
 
     Route::post('/education/store' , [CandidateController::class , 'storeEducation'])->name('education.store') ;
     Route::post('/experience/store' , [CandidateController::class , 'storeEcperience'])->name('experience.store') ;
+
+    Route::delete('/experience/{id}/destroy' , [CandidateController::class , 'experienceDestroy'])->name('experience.destroy') ;
+    Route::delete('/education/{id}/store' , [CandidateController::class , 'educationDestroy'])->name('education.destroy') ;
+
 
 
 });

@@ -1,76 +1,82 @@
 <x-guest-layout>
-    <div class="min-h-screen bg-slate-950 flex flex-col justify-center items-center relative overflow-hidden px-4 sm:px-6 py-10">
+    <div class="min-h-screen bg-black flex flex-col justify-center items-center relative overflow-hidden selection:bg-red-500 selection:text-white">
         
-        <div class="absolute inset-0 pointer-events-none">
-            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-3xl h-full bg-blue-600/5 rounded-full blur-[120px]"></div>
-            <div class="absolute bottom-0 right-0 w-96 h-96 bg-cyan-600/10 rounded-full blur-[100px]"></div>
+        {{-- 1. Atmospheric Background (Nafs lkhalfiya dyal Register) --}}
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full pointer-events-none z-0">
+            <div class="absolute top-[-10%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-red-900/10 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-[-10%] left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-red-950/20 rounded-full blur-[100px]"></div>
+            <div class="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10 brightness-100 contrast-150"></div>
         </div>
 
-        <div class="relative w-full max-w-md">
+        <div class="relative z-10 w-full max-w-md px-6">
             
-            <div class="text-center mb-8">
-                <div class="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 shadow-lg shadow-blue-500/30 mb-4">
-                    <svg class="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                </div>
-                <h2 class="text-3xl font-bold text-white tracking-tight">Welcome Back</h2>
-                <p class="text-slate-400 mt-2 text-sm">Please sign in to your account</p>
+            {{-- Header --}}
+            <div class="text-center mb-10">
+                <a href="/" class="inline-block mb-6 group cursor-pointer">
+                    <span class="text-3xl font-bold text-white tracking-tighter">
+                        Job<span class="text-red-600">Match</span>
+                    </span>
+                </a>
+                <h2 class="text-2xl font-semibold text-white">Welcome Back</h2>
+                <p class="text-zinc-600 mt-2 text-sm">Please sign in to your account</p>
             </div>
 
-            <div class="bg-slate-900 border border-slate-800 rounded-2xl shadow-2xl p-8 relative overflow-hidden backdrop-blur-sm">
+            {{-- Card Form --}}
+            <div class="bg-black/80 backdrop-blur-xl border border-zinc-900 rounded-3xl p-8 shadow-2xl relative overflow-hidden">
                 
-                <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600"></div>
+                {{-- Top Red Line Accent --}}
+                <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-red-900/50 to-transparent"></div>
 
                 <x-auth-session-status class="mb-4" :status="session('status')" />
 
-                <form method="POST" action="{{ route('login') }}" class="space-y-5">
+                <form method="POST" action="{{ route('login') }}" class="space-y-6">
                     @csrf
 
                     <div>
-                        <x-input-label for="email" :value="__('Email Address')" class="text-slate-300 text-xs uppercase font-bold tracking-wider mb-1" />
-                        <x-text-input id="email" 
-                                      class="block w-full bg-slate-950 border-slate-800 text-slate-200 focus:border-blue-500 focus:ring-blue-500 rounded-lg py-3 text-sm" 
-                                      type="email" 
-                                      name="email" 
-                                      :value="old('email')" 
-                                      required autofocus autocomplete="username" 
-                                      placeholder="name@example.com" />
-                        <x-input-error :messages="$errors->get('email')" class="mt-1" />
+                        <x-input-label for="email" :value="__('Email Address')" class="text-zinc-500 text-xs uppercase font-bold tracking-wider mb-2" />
+                        {{-- Input Style: bg-zinc-200 & text-black --}}
+                        <input id="email" type="email" name="email" :value="old('email')" required autofocus autocomplete="username"
+                            class="w-full rounded-xl bg-zinc-200 border border-zinc-800 text-black px-4 py-3 text-sm focus:border-red-600 focus:ring-1 focus:ring-red-600 placeholder-zinc-500 transition-all outline-none hover:bg-zinc-100"
+                            placeholder="john@example.com" />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
                     </div>
 
                     <div>
-                        <x-input-label for="password" :value="__('Password')" class="text-slate-300 text-xs uppercase font-bold tracking-wider mb-1" />
-                        <x-text-input id="password" 
-                                      class="block w-full bg-slate-950 border-slate-800 text-slate-200 focus:border-blue-500 focus:ring-blue-500 rounded-lg py-3 text-sm" 
-                                      type="password" 
-                                      name="password" 
-                                      required autocomplete="current-password" 
-                                      placeholder="••••••••" />
-                        <x-input-error :messages="$errors->get('password')" class="mt-1" />
+                        <x-input-label for="password" :value="__('Password')" class="text-zinc-500 text-xs uppercase font-bold tracking-wider mb-2" />
+                        <input id="password" type="password" name="password" required autocomplete="current-password"
+                            class="w-full rounded-xl bg-zinc-200 border border-zinc-800 text-black px-4 py-3 text-sm focus:border-red-600 focus:ring-1 focus:ring-red-600 placeholder-zinc-500 transition-all outline-none hover:bg-zinc-100"
+                            placeholder="••••••••" />
+                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
                     </div>
 
                     <div class="flex items-center justify-between mt-4">
-                        <label for="remember_me" class="inline-flex items-center cursor-pointer">
-                            <input id="remember_me" type="checkbox" class="rounded bg-slate-950 border-slate-700 text-blue-600 shadow-sm focus:ring-blue-500 focus:ring-offset-slate-900" name="remember">
-                            <span class="ml-2 text-sm text-slate-400 hover:text-slate-300 transition">{{ __('Remember me') }}</span>
+                        <label for="remember_me" class="inline-flex items-center cursor-pointer group">
+                            <input id="remember_me" type="checkbox" class="rounded border-zinc-800 text-red-600 shadow-sm focus:ring-red-600 focus:ring-offset-black bg-zinc-900" name="remember">
+                            <span class="ml-2 text-sm text-zinc-500 group-hover:text-zinc-400 transition">{{ __('Remember me') }}</span>
                         </label>
 
                         @if (Route::has('password.request'))
-                            <a class="text-sm text-blue-400 hover:text-blue-300 font-medium transition-colors" href="{{ route('password.request') }}">
+                            <a class="text-sm text-zinc-500 hover:text-red-500 font-medium transition-colors" href="{{ route('password.request') }}">
                                 {{ __('Forgot password?') }}
                             </a>
                         @endif
                     </div>
 
                     <div class="pt-2">
-                        <x-primary-button class="w-full justify-center py-3 text-sm font-bold tracking-wide uppercase bg-blue-600 hover:bg-blue-500 border-none shadow-lg shadow-blue-900/40 transition-all transform hover:-translate-y-0.5">
+                        <button type="submit" class="w-full group relative flex justify-center py-2 px-4 border border-transparent text-sm font-bold rounded-xl text-white bg-red-600 hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-red-700 transition-all duration-300 shadow-[0_5px_20px_rgba(185,28,28,0.2)] hover:shadow-[0_5px_30px_rgba(185,28,28,0.4)]">
+                            <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                                <svg class="h-5 w-5 text-red-300 group-hover:text-red-200 transition-colors" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M3 3a1 1 0 011 1v12a1 1 0 11-2 0V4a1 1 0 011-1zm7.707 3.293a1 1 0 010 1.414L9.414 9H17a1 1 0 110 2H9.414l1.293 1.293a1 1 0 01-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                            </span>
                             {{ __('Sign In') }}
-                        </x-primary-button>
+                        </button>
                     </div>
 
                     <div class="text-center pt-2">
-                        <p class="text-sm text-slate-400">
+                        <p class="text-sm text-zinc-600">
                             Don't have an account?
-                            <a href="{{ route('register') }}" class="text-blue-400 hover:text-blue-300 font-bold transition-colors">
+                            <a href="{{ route('register') }}" class="font-medium text-zinc-400 hover:text-red-500 transition-colors underline decoration-zinc-800 underline-offset-4 hover:decoration-red-500">
                                 Create one
                             </a>
                         </p>
@@ -78,8 +84,8 @@
                 </form>
             </div>
             
-             <div class="mt-8 text-center text-xs text-slate-600">
-                <span class="mx-2">&copy; {{ date('Y') }} Talentia</span>
+             <div class="mt-8 text-center text-xs text-zinc-700">
+                <span class="mx-2">&copy; {{ date('Y') }} JobMatch. All rights reserved.</span>
             </div>
         </div>
     </div>

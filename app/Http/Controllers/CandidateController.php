@@ -64,12 +64,34 @@ class CandidateController extends Controller
             'end_date' => 'nullable|date|after_or_equal:start_date',
             'description' => 'nullable|string|max:1000',
         ]);
+        
+        // dd($validated) ; 
+        // return ; 
+
 
         $this->candidateService->addExperience(Auth::id(), $validated);
+
+        // return ; 
 
         return redirect()->back();
 
 
     }
+
+    public function experienceDestroy($id) 
+    {
+        $this -> candidateService -> experienceDestroy($id) ; 
+
+        return redirect() -> back() ; 
+    }
+
+    public function educationDestroy($id) 
+    {
+        $this -> candidateService -> educationDestroy($id) ; 
+
+        return redirect() -> back() ;
+        
+    }
+
 
 }

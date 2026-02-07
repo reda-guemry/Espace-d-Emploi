@@ -18,6 +18,8 @@ class ExperienceRepositorie
 
     public function store($id, $data)
     {
+        // dd($data) ; 
+
         return Experience::create([
             'user_id' => $id,
             'position' => $data['position'],
@@ -28,6 +30,12 @@ class ExperienceRepositorie
         ]);
     }
 
+    public function destroy($id) 
+    {
+        return Experience::destroy($id) ; 
+    }
+
+    
 
 
 }
