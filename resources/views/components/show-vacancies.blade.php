@@ -48,7 +48,7 @@ new class extends Component {
             <div wire:key="{{ $vacancy->id }}"
                 class="group relative bg-zinc-900 border border-zinc-800 hover:border-red-500/50 rounded-2xl p-5 transition-all duration-300 hover:shadow-xl hover:shadow-red-500/10 flex flex-col h-full">
 
-                <div class="flex justify-between items-start mb-4">
+                <div x-intersect="console.log('rane bent ahbebe f chebi ')" class="flex justify-between items-start mb-4">
                     <div
                         class="w-12 h-12 rounded-xl bg-zinc-800 flex items-center justify-center overflow-hidden border border-zinc-700 shadow-sm">
                         @if($vacancy->image)
