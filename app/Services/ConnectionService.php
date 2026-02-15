@@ -30,7 +30,7 @@ class ConnectionService
 
         if ($check) {
             return;
-            }
+        }
             
             // dd('skowjsiowj');
 
