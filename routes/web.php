@@ -51,6 +51,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/connection/{connection}/accepte' , [ConnectionController::class , 'accept']) -> name('connection.accepte') ;
     Route::post('/connection/{connection}/refuse' , [ConnectionController::class , 'refuse']) -> name('connection.refuse') ;
+    Route::get('/conversation' , [] ) ;
 
 });
 
