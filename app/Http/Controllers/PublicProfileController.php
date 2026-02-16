@@ -21,9 +21,11 @@ class PublicProfileController extends Controller
     {
         $user = $this -> candidateService -> getCandidateProfileDetails($id) ;  
 
-        // dd($user) ; 
+        $connection = $this -> candidateService -> getConnectBeetwenUsers($user->id) ;
 
-        return View('candidate.public-cancdidat' , compact('user')) ;
+        // dd($connection) ; 
+
+        return View('candidate.public-cancdidat' , compact('user' , 'connection')) ;
     }
 
 
@@ -34,7 +36,9 @@ class PublicProfileController extends Controller
 
         $vacancies = $this -> vacancieService -> getAllVacancie($id) ;
 
-        return view('recruiter.public-recruiter' , compact('user' , 'vacancies')) ;
+        $connection = $this -> candidateService -> getConnectBeetwenUsers($user->id) ;
+
+        return view('recruiter.public-recruiter' , compact('user' , 'vacancies' , 'connection')) ;
     }
 
 }

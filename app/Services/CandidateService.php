@@ -3,10 +3,12 @@
 namespace App\Services;
 
 use App\DTOs\UserDTO;
+use App\Repositories\Eloquent\connectionRepository;
 use App\Repositories\Eloquent\UserRepository;
 use App\Repositories\Interfaces\UserRepositoryInterface ; 
 use App\Repositories\Eloquent\EducationRepositorie ; 
-use App\Repositories\Eloquent\ExperienceRepositorie ; 
+use App\Repositories\Eloquent\ExperienceRepositorie ;
+use Auth; 
 
 
 
@@ -20,6 +22,7 @@ class CandidateService
         protected EducationRepositorie $educationRepositorie , 
         protected ExperienceRepositorie $experienceRepositorie , 
         protected UserRepository $userRepository , 
+        protected connectionRepository $connectionRepository
     ) {
     }
 
@@ -54,6 +57,11 @@ class CandidateService
     public function getCandidateProfileDetails($id) 
     {
         return $this -> userRepository -> getUserAndDetaildById($id) ; 
+    }
+
+    public function getConnectBeetwenUsers($id)
+    {
+        return $this -> connectionRepository -> getConnectBeetwenUsers($id , Auth::id()) ;
     }
 
 }

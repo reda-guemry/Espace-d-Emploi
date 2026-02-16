@@ -52,6 +52,10 @@ class connectionRepository
 
     }
 
+    public function getConnectBeetwenUsers($userA , $userB )
+    {
+        return Connection::between($userA , $userB)->first() ;
+    }
 
 
 

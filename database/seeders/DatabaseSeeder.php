@@ -19,9 +19,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RolesAndPermissionsSeeder::class);
 
-
         User::factory(5)->create()->each(function ($user) {
-            
+
             $randomRole = collect(['candidate', 'recruiter'])->random();
             $user->assignRole($randomRole);
         });
@@ -32,10 +31,15 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => bcrypt('password'),
             'profile_photo' => 'default_profile.jpg',
-            'cover_photo' => 'default_cover.png' , 
+            'cover_photo' => 'default_cover.png',
         ]);
 
         $admin->assignRole('recruiter');
+
+        $this->call([
+            VacancieSeeder::class , 
+        ]);
+
 
     }
 }

@@ -23,5 +23,18 @@ class Connection extends Model
     {
         return $this -> belongsTo(User::class , 'receiver_id') ; 
     }
+
+
+    public function scopeBetween($query , $userA , $userB) 
+    {
+        return $query -> where (function($q) use ($userA , $userB) {
+            $q->where('sender_id' , $userA) 
+            ->where('receiver_id' , $userB) ; 
+        })->orWhere(function ($q) use($userA , $userB) {
+            $q->where('sender_id' , $userB) 
+            ->Where('receiver_id' , $userA) ;
+        }) ;
+
+    }
     
 }

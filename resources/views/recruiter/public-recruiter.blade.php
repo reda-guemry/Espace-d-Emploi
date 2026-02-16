@@ -10,7 +10,7 @@
 
                         <div class="flex flex-col items-center text-center">
                             <div class="relative mb-4">
-                                <img src="{{ asset('storage/profiles/' . $user ->profile_photo) }}"
+                                <img src="{{ asset('storage/profiles/' . $user->profile_photo) }}"
                                     class="w-32 h-32 rounded-full border-4 border-zinc-950 shadow-lg object-cover">
                                 <div
                                     class="absolute bottom-1 right-1 bg-red-600 p-1.5 rounded-full border-4 border-zinc-900">
@@ -26,26 +26,44 @@
                             </h1>
                             <p class="text-red-500 font-medium text-sm mt-1">Senior Talent Acquisition</p>
 
-                            
+
                         </div>
 
-                        <div class="mt-8 space-y-3">
+                        <div class="mt-6 w-full">
+                            @if (!$connection)
+                                <form action="{{ route('connection.store', $user->id) }}" method="POST">
+                                    @csrf
+                                    <button
+                                        class="w-full py-2.5 px-4 bg-red-600 hover:bg-red-700 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-red-900/20 flex items-center justify-center gap-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                                        </svg>
+                                        Connect
+                                    </button>
+                                </form>
 
-                            <form action="{{ route('connection.store', $user->id) }}" method="POST">
-                                @csrf
+                            @elseif ($connection->status === 'pending')
+                                <a href="#"
+                                    class="w-full py-2.5 px-4 bg-yellow-600/20 text-yellow-500 border border-yellow-600/50 text-sm font-bold rounded-xl transition-all flex items-center justify-center gap-2 cursor-not-allowed">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    Pending
+                                </a>
 
-                                <button
-                                class="w-full py-2.5 px-4 bg-red-600 hover:bg-red-700 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-red-900/20 flex items-center justify-center gap-2">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
-                                </svg>
-                                Connect
-                            </button>
-                            </form>
-                            
+                            @elseif ($connection->status === 'accepted')
+                                <a href="#"
+                                    class="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold rounded-xl transition-all shadow-lg shadow-blue-900/20 flex items-center justify-center gap-2">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                                    </svg>
+                                    Message
+                                </a>
+                            @endif
                         </div>
-
                         <div class="h-px bg-zinc-800 w-full my-6"></div>
 
                         <div class="space-y-4">
