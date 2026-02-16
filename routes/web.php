@@ -9,10 +9,7 @@ use App\Http\Controllers\RecruiterController ;
 use App\Http\Controllers\CandidateController ;
 use App\Http\Controllers\vacancieController ; 
 
-Route::get('/', function () {
-    $data = User::paginate(2);
-    return $data;
-});
+Route::get('/') -> middleware('auth');
 
 
 Route::middleware(['auth' , 'role:recruiter']) -> group (function () {

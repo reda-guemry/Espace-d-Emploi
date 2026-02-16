@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->text('content') ;
-            $table->string('file_path') ; 
+            $table->foreignId('sender_id')->references('users')->onDelete('cascade');
+            $table->foreignId('receiver_id')->references('users')->onDelete('cascade'); 
+            $table->text('content')->nullable() ;
+            $table->string('file_path')->nullable() ; 
             $table->string('type') ; 
             $table->timestamps();
         });
