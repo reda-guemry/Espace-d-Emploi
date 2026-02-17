@@ -31,7 +31,7 @@ class ConversationController extends Controller
         if($id){
             $activeFriende = $this ->userService ->getUserById($id) ;
             
-            $conversation = $this -> conversationService -> getConversation($user , $activeFriende) ;
+            $conversation = $this -> conversationService -> getConversation($user->id , $activeFriende->id) ;
 
             $messages = $conversation->messages()->orderBy('created_at')->get() ; 
         }

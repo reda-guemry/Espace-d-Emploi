@@ -15,14 +15,14 @@ class ConversationService
     ) {
     }
 
-    public function getConversation($user , $activeFriende)
+    public function getConversation($userid , $activeFriendeid)
     {
-        $conversation = $this -> conversationRepository ->findPrivateBetween($user->id , $activeFriende->id) ; 
+        $conversation = $this -> conversationRepository ->findPrivateBetween($userid , $activeFriendeid) ; 
 
         if (!$conversation) {
             $conversation = $this -> conversationRepository -> store() ;
 
-            $conversation->users()->attach([$user->id, $activeFriende->id]);
+            $conversation->users()->attach([$userid, $activeFriendeid]);
 
         }
 
