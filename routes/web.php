@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ConnectionController;
 use App\Http\Controllers\ConversationController;
+use App\Http\Controllers\MessageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PublicProfileController;
 use App\Models\User;
@@ -53,7 +54,10 @@ Route::middleware('auth')->group(function () {
     Route::post('/connection/{connection}/accepte' , [ConnectionController::class , 'accept']) -> name('connection.accepte') ;
     Route::post('/connection/{connection}/refuse' , [ConnectionController::class , 'refuse']) -> name('connection.refuse') ;
 
-    Route::get('/conversation' , [ConversationController::class , 'index'] )->name('conversation') ;
+    Route::get('/conversation/{id?}' , [ConversationController::class , 'conversation'] )->name('conversation') ;
+
+    Route::post('/message/store' , [MessageController::class , 'store' ] )->name('messages.store');
+    
 
 });
 
