@@ -26,18 +26,18 @@ class ConversationController extends Controller
         $friends = Auth::user()->friends() -> get() ;
 
         $messages = [] ;
-        $activeFriende = null ;
+        $activeFriend = null ;
 
         if($id){
-            $activeFriende = $this ->userService ->getUserById($id) ;
+            $activeFriend = $this ->userService ->getUserById($id) ;
             
-            $conversation = $this -> conversationService -> getConversation($user->id , $activeFriende->id) ;
+            $conversation = $this -> conversationService -> getConversation($user->id , $activeFriend->id) ;
 
             $messages = $conversation->messages()->orderBy('created_at')->get() ; 
         }
 
-        // dd($activeFriende) ;
+        // dd($messages) ;
     
-        return view('conversation.convertation' , compact('friends' , 'messages' , 'activeFriende')) ;
+        return view('conversation.convertation' , compact('friends' , 'messages' , 'activeFriend')) ;
     }
 }

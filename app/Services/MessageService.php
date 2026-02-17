@@ -23,18 +23,19 @@ class MessageService
 
         $payload = [
             'conversation_id' => $conversation->id,
-            'sender_id' => $sender->id,
+            'sender_id' => $sender,
             'content' => $content,
-            'type' => 'text' , 
-            'attachment' => null , 
+            'type' => 'text',
+            'attachment' => null,
         ];
 
-        if($attachment){
-            $path = $attachment -> store ('attachments' , 'public') ;
+        if ($attachment) {
+            $path = $attachment->store('attachments', 'public');
 
             $payload['attachment'] = basename($path);
 
-            $mime = $attachment ->getMimeType() ;
+
+            $mime = $attachment->getMimeType();
 
             if (str_starts_with($mime, 'image/')) {
                 $payload['type'] = 'image';
@@ -43,9 +44,10 @@ class MessageService
             } else {
                 $payload['type'] = 'file';
             }
+            // dd($payload);
         }
 
-        return $this ->messageRepository ->store($payload) ;
+        return $this->messageRepository->store($payload);
     }
 
 }

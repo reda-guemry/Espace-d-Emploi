@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreMessageRuquest;
+use App\Http\Requests\StoreMessageRequest;
 use App\Services\MessageService;
+use Auth;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
@@ -14,17 +15,19 @@ class MessageController extends Controller
     ) {
     }
 
-    public function store(StoreMessageRuquest $request)
+    public function store(StoreMessageRequest $request)
     {
-        $data = $request->validates();
+        $data = $request->validated();
+        // dd('s');
 
         $this->messageService->send(
-            auth()->user(),
+            Auth::id(),
             $data['receiver_id'],
             $data['content'] ?? null,
             $data['attachment'] ?? null
         );
 
+        return back() ;
 
     }
 }

@@ -8,9 +8,10 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Message extends Model
 {
     protected $fillable = [
+        'conversation_id' ,
         'sender_id' , 
         'content' , 
-        'content' ,
+        'attachment' ,
         'type' , 
     ] ;
 
