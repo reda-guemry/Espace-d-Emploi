@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use DB;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -95,15 +96,31 @@ class User extends Authenticatable
     public function getPublicProfilUrlAttribute()
     {
         if ($this->hasRole('recruiter')) {
-            return route('public-recruiter' , $this -> id) ;
+            return route('public-recruiter', $this->id);
         }
-        
-        return route('public-candidate' , $this -> id) ; 
+
+        return route('public-candidate', $this->id);
 
     }
 
-    public function conversations() 
+    public function conversations()
     {
-        return $this -> hasMany(Conversation::class) ;
+        return $this->hasMany(Conversation::class);
+    }
+
+    public function friends()
+    {
+        return User::whereIn('id', function ($query) {
+            $query->select('receiver_id')
+                ->from('connections')
+                ->where('sender_id', $this->id)
+                ->where('status', 'accepted')
+                ->union(
+                    DB::table('connections')
+                        ->select('sender_id')
+                        ->where('receiver_id', $this->id)
+                        ->where('status', 'accepted')
+                );
+        });
     }
 }
