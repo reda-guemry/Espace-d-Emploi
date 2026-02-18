@@ -27,6 +27,7 @@ class ConversationController extends Controller
 
         $messages = [] ;
         $activeFriend = null ;
+        $conversation = null ;
 
         if($id){
             $activeFriend = $this ->userService ->getUserById($id) ;
@@ -38,6 +39,6 @@ class ConversationController extends Controller
 
         // dd($messages) ;
     
-        return view('conversation.convertation' , compact('friends' , 'messages' , 'activeFriend')) ;
+        return view('conversation.convertation' , compact('friends' , 'messages' , 'conversation' , 'activeFriend')) ;
     }
 }

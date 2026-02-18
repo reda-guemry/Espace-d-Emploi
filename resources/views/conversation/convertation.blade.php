@@ -130,6 +130,11 @@
         </div>
     </div>
 
+
+    @if ($conversation)  
+        <div id='conversationId' data-id="{{ $conversation->id }}"></div>
+    @endif
+
     <style>
         .custom-scrollbar::-webkit-scrollbar { width: 5px; }
         .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
