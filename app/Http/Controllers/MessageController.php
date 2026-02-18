@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\MessageSente;
 use App\Http\Requests\StoreMessageRequest;
 use App\Services\MessageService;
 use Auth;
@@ -20,12 +21,14 @@ class MessageController extends Controller
         $data = $request->validated();
         // dd('s');
 
-        $this->messageService->send(
+        $message = $this->messageService->send(
             Auth::id(),
             $data['receiver_id'],
             $data['content'] ?? null,
             $data['attachment'] ?? null
         );
+
+        broadcast(new MessageSente($message)) ; 
 
         return back() ;
 
