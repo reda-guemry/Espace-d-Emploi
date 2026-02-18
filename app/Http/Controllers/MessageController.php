@@ -28,8 +28,12 @@ class MessageController extends Controller
             $data['attachment'] ?? null
         );
 
-        broadcast(new MessageSente($message)) ; 
+        // dd($message) ;
 
+        broadcast(new MessageSente($message)) ; 
+        // dd('event fired');
+
+        
         return back() ;
 
     }
