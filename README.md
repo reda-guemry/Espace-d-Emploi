@@ -1,59 +1,114 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+<div align="center">
+  <h1>🚀 JobMutch</h1>
+  <p><strong>Plateforme moderne de recrutement, de networking et de messagerie en temps réel.</strong></p>
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+  <img src="https://img.shields.io/badge/Laravel-11.x-FF2D20?style=for-the-badge&logo=laravel" alt="Laravel">
+  <img src="https://img.shields.io/badge/Livewire-3.x-FB70A9?style=for-the-badge&logo=livewire" alt="Livewire">
+  <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind">
+  <img src="https://img.shields.io/badge/WebSockets-Reverb-blue?style=for-the-badge" alt="Reverb">
+</div>
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📖 À propos du projet
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**JobMutch** est une application web innovante conçue pour connecter les recruteurs et les chercheurs d'emploi de manière fluide et interactive. Au-delà d'un simple site d'offres d'emploi, JobMutch intègre des fonctionnalités de réseau social professionnel (système d'amitié) et de **messagerie instantanée (Chat)** grâce à la puissance des WebSockets.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+L'interface est rendue ultra-réactive (sans rechargement de page) grâce à **Laravel Livewire**.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## ✨ Fonctionnalités Principales
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### 🔒 Sécurité & Accès (Géré via Spatie Permission)
+- Authentification complète (Inscription, Connexion, Mot de passe oublié) via **Laravel Breeze/Jetstream**.
+- Gestion stricte des rôles : **Recruteur** (Entreprise) & **Candidat** (Chercheur d'emploi).
+- Modification de profil (Photo, Bio, Mot de passe avec vérification).
 
-## Laravel Sponsors
+### 👨‍💻 Espace Chercheur d'Emploi
+- **Profil type CV dynamique :** Gestion du titre (ex: Dev Fullstack), formations, expériences détaillées et compétences.
+- **Networking :** Système de demandes d'amitié (Ajouter, Accepter, Refuser).
+- **Emploi :** Recherche d'offres ciblées, consultation détaillée et postulation en un clic.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### 🏢 Espace Recruteur
+- **Gestion des offres :** Création d'annonces (Titre, Description, Type de contrat, Image obligatoire).
+- **Suivi :** Consultation des candidatures reçues pour chaque poste.
+- **Clôture :** Possibilité de fermer une offre une fois le recrutement terminé.
 
-### Premium Partners
+### ⚡ Fonctionnalités Avancées (Tech Highlights)
+- **💬 Chat en Temps Réel :** Messagerie instantanée entre utilisateurs propulsée par **Laravel Reverb**.
+- **🔍 Recherche Optimisée :** Moteur de recherche d'utilisateurs par nom ou spécialité.
+- **🚀 Lazy Loading :** Chargement différé des listes d'offres d'emploi via Livewire pour des performances optimales.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## 🛠 Stack Technique
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+* **Backend :** Laravel 11, PHP 8.2+
+* **Frontend :** Laravel Livewire, Tailwind CSS, Alpine.js
+* **Base de données :** MySQL (Relations Eloquent avancées : 1:1, 1:N, N:M)
+* **WebSockets :** Laravel Reverb
+* **Gestion des Rôles :** `spatie/laravel-permission`
+* **Tests & Data :** Migrations, Seeders et Factories intégrés.
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## ⚙️ Installation & Configuration
 
-## Security Vulnerabilities
+Suivez ces étapes pour installer le projet en local :
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 1. Cloner le dépôt
+```bash
+git clone [https://github.com/votre-username/jobmutch.git](https://github.com/votre-username/jobmutch.git)
+cd jobmutch
+2. Installer les dépendances
+Bash
+composer install
+npm install
+3. Configurer l'environnement
+Dupliquez le fichier d'environnement et générez la clé d'application :
 
-## License
+Bash
+cp .env.example .env
+php artisan key:generate
+⚠️ N'oubliez pas de configurer vos accès de base de données (DB_*) et les variables Reverb (REVERB_APP_ID, REVERB_APP_KEY, etc.) dans le fichier .env.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+4. Base de données (Migrations & Seeders)
+Le projet contient des données de test (rôles, utilisateurs, offres) grâce aux Factories/Seeders :
+
+Bash
+php artisan migrate:fresh --seed
+5. Compiler les assets
+Bash
+npm run build
+# ou pour le développement : npm run dev
+6. Lancer les serveurs
+Pour faire fonctionner l'application complète (y compris le chat), vous avez besoin de lancer 3 processus dans des terminaux différents :
+
+Terminal 1 : Serveur Web
+
+Bash
+php artisan serve
+Terminal 2 : Serveur WebSockets (Reverb)
+
+Bash
+php artisan reverb:start
+Terminal 3 : Vite (Assets)
+
+Bash
+npm run dev
+🗄️ Architecture des Données (Relations)
+Le modèle de données exploite pleinement Eloquent :
+
+One-to-One : User ↔ Profile (CV, Bio, Photo).
+
+One-to-Many : Recruiter ↔ Jobs | Job ↔ Applications.
+
+Many-to-Many : Users ↔ Friends (Système d'amitié) | Users ↔ Skills.
+
+<div align="center">
+<i>Développé avec ❤️ passion et Laravel.</i>
+</div>
+
+
+**Quelques conseils supplémentaires pour ton repo GitHub :**
