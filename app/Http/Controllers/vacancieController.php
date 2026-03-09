@@ -39,8 +39,8 @@ class vacancieController extends Controller
     {
 
         $request -> validate([
-            'vacancy_id' => 'required | exists:vacancies,id' , 
-            'cv' => 'required'
+            'vacancy_id' => 'required|exists:vacancies,id' , 
+            'cv' => 'required|file|mimes:pdf,doc,docx|max:2048'
         ]) ; 
 
         $data = [

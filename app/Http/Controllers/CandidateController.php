@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Services\CandidateService;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
 
 class CandidateController extends Controller
 {
-
     public function __construct(
         private CandidateService $candidateService
-    ) {
-    }
+    ) {}
 
     public function index(Request $request)
     {
@@ -31,12 +28,11 @@ class CandidateController extends Controller
 
         // dd($invitationsConnect) ;
 
-        // var_dump($people) ; 
-        // exit ; 
+        // var_dump($people) ;
+        // exit ;
 
         return view('candidate.dashboardcandidate', compact('candidate', 'invitationsConnect'));
     }
-
 
     public function storeEducation(Request $request)
     {
@@ -54,8 +50,7 @@ class CandidateController extends Controller
 
     }
 
-
-    public function storeEcperience(Request $request)
+    public function storeExperience(Request $request)
     {
         $validated = $request->validate([
             'position' => 'required|string|max:255',
@@ -64,34 +59,30 @@ class CandidateController extends Controller
             'end_date' => 'nullable|date|after_or_equal:start_date',
             'description' => 'nullable|string|max:1000',
         ]);
-        
-        // dd($validated) ; 
-        // return ; 
 
+        // dd($validated) ;
+        // return ;
 
         $this->candidateService->addExperience(Auth::id(), $validated);
 
-        // return ; 
+        // return ;
 
         return redirect()->back();
 
-
     }
 
-    public function experienceDestroy($id) 
+    public function experienceDestroy($id)
     {
         $this -> candidateService -> experienceDestroy($id) ; 
 
-        return redirect() -> back() ; 
+        return redirect()->back();
     }
 
-    public function educationDestroy($id) 
+    public function educationDestroy($id)
     {
         $this -> candidateService -> educationDestroy($id) ; 
 
-        return redirect() -> back() ;
-        
+        return redirect()->back();
+
     }
-
-
 }

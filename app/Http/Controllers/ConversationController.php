@@ -34,10 +34,8 @@ class ConversationController extends Controller
             
             $conversation = $this -> conversationService -> getConversation($user->id , $activeFriend->id) ;
 
-            $messages = $conversation->messages()->orderBy('created_at')->get() ; 
+            $messages = $conversation->messages()->with('sender')->orderBy('created_at')->get() ; 
         }
-
-        // dd($messages) ;
     
         return view('conversation.convertation' , compact('friends' , 'messages' , 'conversation' , 'activeFriend')) ;
     }

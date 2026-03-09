@@ -4,7 +4,7 @@
             {{ __('Profile Settings') }}
         </h2>
         <p class="mt-2 text-sm text-gray-400 max-w-2xl">
-            Update your public persona. This information will be displayed on your profile page.
+            Update your public persona. This information will be displayed on your profile page. 
         </p>
     </header>
 
@@ -166,7 +166,7 @@
         3. HISTORY SECTION (Triggers)
         ======================= --}}
 
-        @if ($user->role === 'candidate')
+        @if (Auth::user()->roles->first()->name == 'candidate')
 
 
             <div class="pt-6">

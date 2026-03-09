@@ -1,59 +1,74 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Espace d'Emploi
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+<div align="center">
+  <p>A professional platform connecting Candidates and Recruiters, featuring real-time messaging, connections, and sophisticated job application management.</p>
+</div>
 
-## About Laravel
+## ✨ Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **RBAC & Authentication:** Robust role-based access control with Spatie Laravel Permission (Recruiter vs Candidate).
+- **Candidate Dashboard:** Manage Profiles, Resumes (CVs), Educations, Experiences, and apply for Vacancies.
+- **Recruiter Dashboard:** Post job Vacancies, review Candidate applications, and control job offers.
+- **Real-Time Messaging:** Powered by Laravel Reverb for real-time WebSocket communication between connected users.
+- **Connections System:** Send, accept, or decline friend/professional connection requests.
+- **Modern UI:** Built seamlessly with Livewire, Tailwind CSS, and AlpineJS for a fast, SPA-like feel.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 🛠️ Tech Stack
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Backend:** Laravel 12.0 API, PHP 8.2+
+- **Frontend:** Livewire 4.1, AlpineJS, Tailwind CSS
+- **Real-Time:** Laravel Reverb & Laravel Echo
+- **Database:** PostgreSQL (configurable)
+- **Roles/Permissions:** Spatie Laravel Permission
 
-## Learning Laravel
+## 🚀 Installation & Setup
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+1. **Clone the repository:**
+   ```bash
+   git clone <repo_url>
+   cd Espace-d-Emploi
+   ```
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+2. **Install PHP and Node dependencies:**
+   ```bash
+   composer install
+   npm install
+   ```
 
-## Laravel Sponsors
+3. **Environment Setup:**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
+   *Update your `.env` file to configure your Database credentials (e.g., PostgreSQL settings) and configure Laravel Reverb variables.*
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+4. **Run Migrations & Seeders:**
+   ```bash
+   php artisan migrate --seed
+   ```
 
-### Premium Partners
+## 💻 Running the Project
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+To run the project locally, you need to spin up multiple services (Server, Queue, Vite, and Reverb). Simply run:
 
-## Contributing
+```bash
+npm run dev
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+*This command utilizes `concurrently` to start `php artisan serve`, `queue:listen`, and `vite` all at once.*
+To start the WebSocket server explicitly:
+```bash
+php artisan reverb:start
+```
 
-## Code of Conduct
+## 🤝 Contribution Guidelines
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+1. Fork the Project.
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`).
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`).
+4. Push to the Branch (`git push origin feature/AmazingFeature`).
+5. Open a Pull Request.
 
-## Security Vulnerabilities
+## 📜 License
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is licensed under the MIT License.

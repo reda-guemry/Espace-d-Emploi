@@ -22,12 +22,12 @@ class VacancieRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title' => 'required | string | max:255' , 
-            'description' => 'required | string' ,
-            'contract_type' => 'required | string' , 
-            'location' => 'required | string ' , 
-            'finish_at' => 'required | date' , 
-            'image' => 'nullable | image' , 
+            'title' => 'required|string|max:255', 
+            'description' => 'required|string',
+            'contract_type' => 'required|string', 
+            'location' => 'required|string', 
+            'finish_at' => 'required|date', 
+            'image' => 'nullable|image|max:2048', 
         ];
     }
 }
